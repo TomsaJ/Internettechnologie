@@ -20,12 +20,11 @@ if (!$conn) {
 }
 
 // Die eingegebenen Daten aus dem POST-Array abrufen
-$name = $_POST['name'];
-$email = $_POST['email'];
+$username = $_POST['username'];;
 $password = sha1($_POST['password']);
 
 // Ein SQL-Statement vorbereiten und ausführen, um die Daten in die Tabelle einzufügen
-$sql = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$password')";
+$sql = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
 
 if (mysqli_query($conn, $sql)) {
   echo "Datensatz erfolgreich eingefügt.";
