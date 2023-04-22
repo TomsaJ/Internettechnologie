@@ -26,6 +26,8 @@ if ($conn->query($sql) === TRUE) {
     echo "<button onclick=\"location.href='index.php'\">Zurück zur Startseite</button>";
 } else {
     echo "Fehler beim Einfügen des Datensatzes: " . $conn->error;
+    echo "<br />";
+    echo "<button onclick=\"location.href='index.php'\">Zurück zur Startseite</button>";
 }
 
 $conn->close();

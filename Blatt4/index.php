@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Meine Seite</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <!-- Formular für die Tabelle "user" -->
@@ -20,7 +21,7 @@
       <input type="submit" value="Absenden" accesskey="s">
     </div>
   </form>
-
+<hr>
   <form action="insert_product.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">ID:</label>
@@ -32,15 +33,15 @@
     </div>
     <div class="form-group">
       <label for="price">Preis:</label>
-      <input type="number" step=".01" id="price" name="price" accesskey="r" required>
+      <input type="number" step=".01" id="price" name="price" accesskey="r" required> Euro
     </div>
     <div class="form-group">
       <label for="width">Breite:</label>
-      <input type="number" step=".01" id="width" name="width" accesskey="b" required>
+      <input type="number" step=".01" id="width" name="width" accesskey="b" required> cm
     </div>
     <div class="form-group">
       <label for="height">Höhe:</label>
-      <input type="number" step=".01" id="height" name="height" accesskey="h" required>
+      <input type="number" step=".01" id="height" name="height" accesskey="h" required> cm
     </div>
     <div class="form-group">
       <label for="description">Beschreibung:</label>
@@ -50,7 +51,7 @@
       <input type="submit" value="Absenden" accesskey="s">
     </div>
   </form>
-
+<hr>
   <form action="insert_category.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">ID:</label>
@@ -69,7 +70,5 @@
     </div>
   </form>
 </div>
-
-
 </body>
 </html>
