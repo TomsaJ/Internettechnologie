@@ -1,3 +1,25 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+li {
+  float: left;
+}
+
+nav{
+	background-color: #dddddd;
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
