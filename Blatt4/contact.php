@@ -10,17 +10,20 @@
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
-    <li><a href="catalog.php">Categories</a>
-      <menu>
-        <li><a href="product.php">Product </a></li>  <br />
-        <li><a href="#"> Product Details</a></li>
-      </menu>
-      </li>
+    <li><a href="catalog.php">Categories</a></li>
+    <menu>
+        <li><a href="product.php">Product</a></li>
+        <li><a href="#">Product Details</a></li>
+    </menu>
     <li><a href="contact.php">Contact us</a></li>
   </ul>
   </nav>
   <!-- Formular für die Tabelle "user" -->
-  <h1>Startseite</h1>
+  <h1>Contact us</h1>
+   <h4>Kontaktieren Sie uns</h4>
+        <p>123 Beispielstraße, Beispielstadt</p>
+        <p>Telefon: 123-456-7890</p>
+        <p>E-Mail: info@example.com</p>
   
   <!--<aside>
     <h2>Verwandte Links</h2>
@@ -30,7 +33,7 @@
       <li><a href="#">Link 3</a></li>
     </ul>
   </aside>-->
-</article>  
+
 
 </body>
 <footer style="background-color: green">

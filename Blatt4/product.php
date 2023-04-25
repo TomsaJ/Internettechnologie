@@ -7,14 +7,21 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<nav>
+<<nav>
   <ul>
-     <li><a href="index.php">Startseite</a></li>
-    <li><a href="product.php">Product</a></li>
-    <li><a href="user.php">User</a></li>
-    <li><a href="catalog.php">Catalog</a></li>
+    <li><a href="index.php">Startseite</a></li>
+    <li><a href="user.php">Login</a></li>
+    <li><a href="catalog.php">Categories</a>
+      <menu>
+        <li><a href="product.php">Product </a></li>  <br />
+        <li><a href="#"> Product Details</a></li>
+      </menu>
+      </li>
+    <li><a href="contact.php">Contact us</a></li>
   </ul>
-</nav>
+  </nav>
+  <!-- Formular für die Tabelle "user" -->
+  <h1>Product</h1>
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
