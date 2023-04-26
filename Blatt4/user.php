@@ -13,7 +13,7 @@
     <li><a href="catalog.php">Categories</a>
       <menu>
         <li><a href="product.php">Product </a></li>  <br />
-        <li><a href="#"> Product Details</a></li>
+        <li><a href="productdetails.php"> Product Details</a></li>
       </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>

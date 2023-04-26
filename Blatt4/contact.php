@@ -13,7 +13,7 @@
     <li><a href="catalog.php">Categories</a></li>
     <menu>
         <li><a href="product.php">Product</a></li>
-        <li><a href="#">Product Details</a></li>
+        <li><a href="productdetails.php">Product Details</a></li>
     </menu>
     <li><a href="contact.php">Contact us</a></li>
   </ul>
@@ -24,17 +24,6 @@
         <p>123 Beispielstraße, Beispielstadt</p>
         <p>Telefon: 123-456-7890</p>
         <p>E-Mail: info@example.com</p>
-  
-  <!--<aside>
-    <h2>Verwandte Links</h2>
-    <ul>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
-    </ul>
-  </aside>-->
-
-
 </body>
 <footer style="background-color: green">
   <div class="container">

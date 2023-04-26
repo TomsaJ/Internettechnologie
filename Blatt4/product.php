@@ -14,7 +14,7 @@
     <li><a href="catalog.php">Categories</a>
       <menu>
         <li><a href="product.php">Product </a></li>  <br />
-        <li><a href="#"> Product Details</a></li>
+        <li><a href="productdetails.php"> Product Details</a></li>
       </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
@@ -51,11 +51,25 @@
       <textarea id="description" name="description" accesskey="d" required></textarea>
     </div>
     <div class="form-group">
-      <input type="submit" value="Absenden" accesskey="s">
+      <input type="submit" value="Absenden" accesskey="s" disabled>
     </div>
   </form>
 <hr>
 </div>
+<table border = "1">
+  <?php
+  for ($row = 1; $row <= 4; $row++) {
+      echo "<thead>";
+    echo "<tr>";
+    for ($col = 1; $col <= 6; $col++) {
+        echo "<td rowspan='40' colspan='60'>" . rand(1, 100) . "</td>";
+      
+    }
+    echo "</tr>";
+    echo "</thead>";
+  }
+  ?>
+</table>
 </body>
 <footer style="background-color: green">
   <div class="container">

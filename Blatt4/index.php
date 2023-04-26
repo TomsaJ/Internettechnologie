@@ -13,7 +13,7 @@
     <li><a href="catalog.php">Categories</a>
       <menu>
         <li><a href="product.php">Product </a></li>  <br />
-        <li><a href="#"> Product Details</a></li>
+        <li><a href="productdetails.php"> Product Details</a></li>
       </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
@@ -21,17 +21,6 @@
   </nav>
   <!-- Formular für die Tabelle "user" -->
   <h1>Startseite</h1>
-  
-  <!--<aside>
-    <h2>Verwandte Links</h2>
-    <ul>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
-      <li><a href="#">Link 3</a></li>
-    </ul>
-  </aside>-->
-</article>  
-
 </body>
 <footer style="background-color: green">
   <div class="container">

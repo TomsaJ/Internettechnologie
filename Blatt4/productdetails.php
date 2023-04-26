@@ -2,11 +2,12 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" sizes="48x48" href="IMG_1417.png">
   <title>Datenbanken Eintrag</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<nav>
+<<nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
@@ -20,43 +21,41 @@
   </ul>
   </nav>
   <!-- Formular für die Tabelle "user" -->
-  <h1>Catalogie</h1>
+  <h1>Product</h1>
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
-  <form action="insert_category.php" method="POST" name="userForm" class="form">
+  <form action="insert_product.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">ID:</label>
-      <input type="text" id="id" name="id" accesskey="i" required>
+      <input type="number" id="id" name="id" accesskey="i" required>
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" accesskey="n" required>
     </div>
     <div class="form-group">
+      <label for="price">Preis:</label>
+      <input type="number" step=".01" id="price" name="price" accesskey="r" required> Euro
+    </div>
+    <div class="form-group">
+      <label for="width">Breite:</label>
+      <input type="number" step=".01" id="width" name="width" accesskey="b" required> cm
+    </div>
+    <div class="form-group">
+      <label for="height">Höhe:</label>
+      <input type="number" step=".01" id="height" name="height" accesskey="h" required> cm
+    </div>
+    <div class="form-group">
       <label for="description">Beschreibung:</label>
       <textarea id="description" name="description" accesskey="d" required></textarea>
     </div>
     <div class="form-group">
-      <input type="submit" value="Absenden" accesskey="s">
+      <input type="submit" value="Absenden" accesskey="s" disabled>
     </div>
   </form>
-  <hr>
+<hr>
 </div>
-<table border = "1">
-  <?php
-  for ($row = 1; $row <= 4; $row++) {
-      echo "<thead>";
-    echo "<tr>";
-    for ($col = 1; $col <= 6; $col++) {
-        echo "<td rowspan='40' colspan='60'>" . rand(1, 100) . "</td>";
-      
-    }
-    echo "</tr>";
-    echo "</thead>";
-  }
-  ?>
-</table>
 </body>
 <footer style="background-color: green">
   <div class="container">
@@ -70,5 +69,4 @@
     </div>
   </div>
 </footer>
-
 </html>
