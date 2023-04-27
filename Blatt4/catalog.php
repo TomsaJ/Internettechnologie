@@ -43,7 +43,7 @@
   </form>
   <hr>
 </div>
-<table border = "1">
+<table width="100%">
   <?php
   for ($row = 1; $row <= 4; $row++) {
       echo "<thead>";
