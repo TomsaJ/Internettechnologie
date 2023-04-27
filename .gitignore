@@ -16,3 +16,7 @@ TEST-*.xml
 junit*.properties
 /.metadata/
 *.pdf
+.SynologyWorkingDirectory/7BWJH8
+Icon
+*.plist
+Icon
