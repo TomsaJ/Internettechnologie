@@ -2,19 +2,18 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" sizes="48x48" href="IMG_1417.png">
   <title>Datenbanken Eintrag</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<<nav>
+<nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
     <li><a href="catalog.php">Categories</a>
       <menu>
-        <li><a href="product.php">Product </a></li>  <br />
-        <li><a href="productdetails.php"> Product Details</a></li>
+        <li><a href="product.php">Product</a></li>  <br />
+        <li><a href="productdetails.php">Product Details</a></li>
       </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
@@ -51,10 +50,11 @@
       <textarea id="description" name="description" accesskey="d" required></textarea>
     </div>
     <div class="form-group">
-      <input type="submit" value="Absenden" accesskey="s" disabled>
+      <input type="submit" value="Absenden" accesskey="s">
     </div>
   </form>
 <hr>
+
 </div>
 <table border = "1">
   <?php
@@ -71,7 +71,7 @@
   ?>
 </table>
 </body>
-<footer style="background-color: green">
+<footer class = "foot">
   <div class="container">
     <div class="row">
       <div class="col-md-6">

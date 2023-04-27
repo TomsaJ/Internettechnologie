@@ -10,11 +10,12 @@
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
-    <li><a href="catalog.php">Categories</a></li>
-    <menu>
-        <li><a href="product.php">Product</a></li>
-        <li><a href="productdetails.php">Product Details</a></li>
-    </menu>
+    <li><a href="catalog.php">Categories</a>
+      <menu>
+        <li><a href="product.php">Product </a></li>  <br />
+        <li><a href="productdetails.php"> Product Details</a></li>
+      </menu>
+      </li>
     <li><a href="contact.php">Contact us</a></li>
   </ul>
   </nav>
@@ -25,7 +26,7 @@
         <p>Telefon: 123-456-7890</p>
         <p>E-Mail: info@example.com</p>
 </body>
-<footer style="background-color: green">
+<footer class = "foot">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
