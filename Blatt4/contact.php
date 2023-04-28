@@ -5,20 +5,22 @@
   <title>Datenbanken Eintrag</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<header>
 <nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
     <li><a href="catalog.php">Categories</a>
       <menu>
-        <li><a href="product.php">Product </a></li>  <br />
+        <li><a href="product.php">Product </a></li>
         <li><a href="productdetails.php"> Product Details</a></li>
       </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
   </ul>
   </nav>
+</header>
+<body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Contact us</h1>
    <h4>Kontaktieren Sie uns</h4>

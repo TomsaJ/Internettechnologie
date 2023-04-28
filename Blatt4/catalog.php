@@ -2,23 +2,26 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datenbanken Eintrag</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<header>
 <nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
     <li><a href="catalog.php">Categories</a>
       <menu>
-        <li><a href="product.php">Product </a></li>  <br />
+        <li><a href="product.php">Product </a></li>
         <li><a href="productdetails.php"> Product Details</a></li>
       </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
   </ul>
   </nav>
+</header>
+<body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Catalogie</h1>
   <!-- Formular für die Tabelle "user" -->
@@ -35,7 +38,7 @@
     </div>
     <div class="form-group">
       <label for="description">Beschreibung:</label>
-      <textarea id="description" name="description" accesskey="d" required></textarea>
+      <textarea id="description" name="description" accesskey="d"  maxlength="255" required></textarea>
     </div>
     <div class="form-group">
       <input type="submit" value="Absenden" accesskey="s">
@@ -43,19 +46,17 @@
   </form>
   <hr>
 </div>
-<table width="100%">
-  <?php
-  for ($row = 1; $row <= 4; $row++) {
-      echo "<thead>";
-    echo "<tr>";
-    for ($col = 1; $col <= 6; $col++) {
-        echo "<td rowspan='40' colspan='60'>" . rand(1, 100) . "</td>";
-      
-    }
-    echo "</tr>";
-    echo "</thead>";
-  }
-  ?>
+<table style = "width:100%">
+<thead>
+    <tr>
+      <th>Categorie</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <td><a href="product.php">Obst</a></td>
+    </tr>
+    </tbody>
 </table>
 </body>
 <footer class = "foot">

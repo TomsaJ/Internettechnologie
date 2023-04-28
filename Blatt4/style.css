@@ -16,20 +16,15 @@ ul {
   justify-content: space-between;
 }
 
-li a {
-  display: block;
-  padding: 8px;
-  background-color: #dddddd;
-}
 
-li {
-  float: left;
-}
 
 nav{
 	background-color: #dddddd;
+	font-size: 20px;
 }
-
+menu {
+list-style-type:none;
+}
 
 
 .form-wrapper {
