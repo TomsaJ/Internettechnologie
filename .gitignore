@@ -24,4 +24,6 @@ Icon
 *.ini
 Eclipse.app*
 */Propel2-master/
+ATest/*
+org.*
 Test/*
