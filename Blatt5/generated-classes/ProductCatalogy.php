@@ -1,8 +1,8 @@
 <?php
 
-namespace blatt5;
+namespace generated-classes;
 
-use blatt5\Base\ProductCatalogy as BaseProductCatalogy;
+use generated-classes\Base\ProductCatalogy as BaseProductCatalogy;
 
 /**
  * Skeleton subclass for representing a row from the 'product_catalogy' table.

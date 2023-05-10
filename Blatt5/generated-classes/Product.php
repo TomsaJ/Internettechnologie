@@ -1,11 +1,11 @@
 <?php
 
-namespace blatt5;
+namespace generated-classes;
 
-use blatt5\Base\UserQuery as BaseUserQuery;
+use generated-classes\Base\Product as BaseProduct;
 
 /**
- * Skeleton subclass for performing query and update operations on the 'user' table.
+ * Skeleton subclass for representing a row from the 'Product' table.
  *
  *
  *
@@ -13,7 +13,7 @@ use blatt5\Base\UserQuery as BaseUserQuery;
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  */
-class UserQuery extends BaseUserQuery
+class Product extends BaseProduct
 {
 
 }

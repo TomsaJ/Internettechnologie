@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<database name="default" defaultIdMethod="native" namespace="\blatt5" defaultPhpNamingMethod="underscore">
+<database name="default" defaultIdMethod="native" namespace="\generated-classes" defaultPhpNamingMethod="underscore">
   <table name="Category" idMethod="native" phpName="Category">
     <column name="id" phpName="Id" type="INTEGER" size="10" primaryKey="true" required="true"/>
     <column name="name" phpName="Name" type="VARCHAR" size="100" required="true"/>

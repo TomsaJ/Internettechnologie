@@ -1,6 +1,6 @@
 <?php
 
-namespace blatt5\Base;
+namespace generated-classes\Base;
 
 use \Exception;
 use \PDO;
@@ -10,9 +10,9 @@ use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Propel\Runtime\Collection\Collection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\PropelException;
-use blatt5\User as ChildUser;
-use blatt5\UserQuery as ChildUserQuery;
-use blatt5\Map\UserTableMap;
+use generated-classes\User as ChildUser;
+use generated-classes\UserQuery as ChildUserQuery;
+use generated-classes\Map\UserTableMap;
 
 /**
  * Base class that represents a query for the `user` table.
@@ -59,13 +59,13 @@ abstract class UserQuery extends ModelCriteria
     protected $entityNotFoundExceptionClass = '\\Propel\\Runtime\\Exception\\EntityNotFoundException';
 
     /**
-     * Initializes internal state of \blatt5\Base\UserQuery object.
+     * Initializes internal state of \generated-classes\Base\UserQuery object.
      *
      * @param string $dbName The database name
      * @param string $modelName The phpName of a model, e.g. 'Book'
      * @param string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = '\\blatt5\\User', $modelAlias = null)
+    public function __construct($dbName = 'default', $modelName = '\\generated-classes\\User', $modelAlias = null)
     {
         parent::__construct($dbName, $modelName, $modelAlias);
     }

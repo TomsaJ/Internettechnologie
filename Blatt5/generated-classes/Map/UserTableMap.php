@@ -1,6 +1,6 @@
 <?php
 
-namespace blatt5\Map;
+namespace generated-classes\Map;
 
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
@@ -11,12 +11,12 @@ use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\RelationMap;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Map\TableMapTrait;
-use blatt5\ProductCatalogy;
-use blatt5\ProductCatalogyQuery;
+use generated-classes\User;
+use generated-classes\UserQuery;
 
 
 /**
- * This class defines the structure of the 'product_catalogy' table.
+ * This class defines the structure of the 'user' table.
  *
  *
  *
@@ -25,7 +25,7 @@ use blatt5\ProductCatalogyQuery;
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  */
-class ProductCatalogyTableMap extends TableMap
+class UserTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
@@ -33,7 +33,7 @@ class ProductCatalogyTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    public const CLASS_NAME = 'blatt5.Map.ProductCatalogyTableMap';
+    public const CLASS_NAME = 'generated-classes.Map.UserTableMap';
 
     /**
      * The default database name for this class
@@ -43,22 +43,22 @@ class ProductCatalogyTableMap extends TableMap
     /**
      * The table name for this class
      */
-    public const TABLE_NAME = 'product_catalogy';
+    public const TABLE_NAME = 'user';
 
     /**
      * The PHP name of this class (PascalCase)
      */
-    public const TABLE_PHP_NAME = 'ProductCatalogy';
+    public const TABLE_PHP_NAME = 'User';
 
     /**
      * The related Propel class for this table
      */
-    public const OM_CLASS = '\\blatt5\\ProductCatalogy';
+    public const OM_CLASS = '\\generated-classes\\User';
 
     /**
      * A class that can be returned by this tableMap
      */
-    public const CLASS_DEFAULT = 'blatt5.ProductCatalogy';
+    public const CLASS_DEFAULT = 'generated-classes.User';
 
     /**
      * The total number of columns
@@ -76,14 +76,14 @@ class ProductCatalogyTableMap extends TableMap
     public const NUM_HYDRATE_COLUMNS = 2;
 
     /**
-     * the column name for the product_id field
+     * the column name for the username field
      */
-    public const COL_PRODUCT_ID = 'product_catalogy.product_id';
+    public const COL_USERNAME = 'user.username';
 
     /**
-     * the column name for the category_id field
+     * the column name for the password field
      */
-    public const COL_CATEGORY_ID = 'product_catalogy.category_id';
+    public const COL_PASSWORD = 'user.password';
 
     /**
      * The default string format for model objects of the related table
@@ -99,10 +99,10 @@ class ProductCatalogyTableMap extends TableMap
      * @var array<string, mixed>
      */
     protected static $fieldNames = [
-        self::TYPE_PHPNAME       => ['ProductId', 'CategoryId', ],
-        self::TYPE_CAMELNAME     => ['productId', 'categoryId', ],
-        self::TYPE_COLNAME       => [ProductCatalogyTableMap::COL_PRODUCT_ID, ProductCatalogyTableMap::COL_CATEGORY_ID, ],
-        self::TYPE_FIELDNAME     => ['product_id', 'category_id', ],
+        self::TYPE_PHPNAME       => ['Username', 'Password', ],
+        self::TYPE_CAMELNAME     => ['username', 'password', ],
+        self::TYPE_COLNAME       => [UserTableMap::COL_USERNAME, UserTableMap::COL_PASSWORD, ],
+        self::TYPE_FIELDNAME     => ['username', 'password', ],
         self::TYPE_NUM           => [0, 1, ]
     ];
 
@@ -115,10 +115,10 @@ class ProductCatalogyTableMap extends TableMap
      * @var array<string, mixed>
      */
     protected static $fieldKeys = [
-        self::TYPE_PHPNAME       => ['ProductId' => 0, 'CategoryId' => 1, ],
-        self::TYPE_CAMELNAME     => ['productId' => 0, 'categoryId' => 1, ],
-        self::TYPE_COLNAME       => [ProductCatalogyTableMap::COL_PRODUCT_ID => 0, ProductCatalogyTableMap::COL_CATEGORY_ID => 1, ],
-        self::TYPE_FIELDNAME     => ['product_id' => 0, 'category_id' => 1, ],
+        self::TYPE_PHPNAME       => ['Username' => 0, 'Password' => 1, ],
+        self::TYPE_CAMELNAME     => ['username' => 0, 'password' => 1, ],
+        self::TYPE_COLNAME       => [UserTableMap::COL_USERNAME => 0, UserTableMap::COL_PASSWORD => 1, ],
+        self::TYPE_FIELDNAME     => ['username' => 0, 'password' => 1, ],
         self::TYPE_NUM           => [0, 1, ]
     ];
 
@@ -128,22 +128,18 @@ class ProductCatalogyTableMap extends TableMap
      * @var array<string>
      */
     protected $normalizedColumnNameMap = [
-        'ProductId' => 'PRODUCT_ID',
-        'ProductCatalogy.ProductId' => 'PRODUCT_ID',
-        'productId' => 'PRODUCT_ID',
-        'productCatalogy.productId' => 'PRODUCT_ID',
-        'ProductCatalogyTableMap::COL_PRODUCT_ID' => 'PRODUCT_ID',
-        'COL_PRODUCT_ID' => 'PRODUCT_ID',
-        'product_id' => 'PRODUCT_ID',
-        'product_catalogy.product_id' => 'PRODUCT_ID',
-        'CategoryId' => 'CATEGORY_ID',
-        'ProductCatalogy.CategoryId' => 'CATEGORY_ID',
-        'categoryId' => 'CATEGORY_ID',
-        'productCatalogy.categoryId' => 'CATEGORY_ID',
-        'ProductCatalogyTableMap::COL_CATEGORY_ID' => 'CATEGORY_ID',
-        'COL_CATEGORY_ID' => 'CATEGORY_ID',
-        'category_id' => 'CATEGORY_ID',
-        'product_catalogy.category_id' => 'CATEGORY_ID',
+        'Username' => 'USERNAME',
+        'User.Username' => 'USERNAME',
+        'username' => 'USERNAME',
+        'user.username' => 'USERNAME',
+        'UserTableMap::COL_USERNAME' => 'USERNAME',
+        'COL_USERNAME' => 'USERNAME',
+        'Password' => 'PASSWORD',
+        'User.Password' => 'PASSWORD',
+        'password' => 'PASSWORD',
+        'user.password' => 'PASSWORD',
+        'UserTableMap::COL_PASSWORD' => 'PASSWORD',
+        'COL_PASSWORD' => 'PASSWORD',
     ];
 
     /**
@@ -156,15 +152,15 @@ class ProductCatalogyTableMap extends TableMap
     public function initialize(): void
     {
         // attributes
-        $this->setName('product_catalogy');
-        $this->setPhpName('ProductCatalogy');
+        $this->setName('user');
+        $this->setPhpName('User');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\blatt5\\ProductCatalogy');
-        $this->setPackage('blatt5');
+        $this->setClassName('\\generated-classes\\User');
+        $this->setPackage('generated-classes');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('product_id', 'ProductId', 'INTEGER' , 'Product', 'id', true, 10, null);
-        $this->addForeignPrimaryKey('category_id', 'CategoryId', 'INTEGER' , 'Category', 'id', true, 10, null);
+        $this->addPrimaryKey('username', 'Username', 'VARCHAR', true, 40, null);
+        $this->addColumn('password', 'Password', 'CHAR', true, 40, null);
     }
 
     /**
@@ -174,77 +170,6 @@ class ProductCatalogyTableMap extends TableMap
      */
     public function buildRelations(): void
     {
-        $this->addRelation('Product', '\\blatt5\\Product', RelationMap::MANY_TO_ONE, array (
-  0 =>
-  array (
-    0 => ':product_id',
-    1 => ':id',
-  ),
-), 'CASCADE', 'CASCADE', null, false);
-        $this->addRelation('Category', '\\blatt5\\Category', RelationMap::MANY_TO_ONE, array (
-  0 =>
-  array (
-    0 => ':category_id',
-    1 => ':id',
-  ),
-), 'CASCADE', 'CASCADE', null, false);
-    }
-
-    /**
-     * Adds an object to the instance pool.
-     *
-     * Propel keeps cached copies of objects in an instance pool when they are retrieved
-     * from the database. In some cases you may need to explicitly add objects
-     * to the cache in order to ensure that the same objects are always returned by find*()
-     * and findPk*() calls.
-     *
-     * @param \blatt5\ProductCatalogy $obj A \blatt5\ProductCatalogy object.
-     * @param string|null $key Key (optional) to use for instance map (for performance boost if key was already calculated externally).
-     *
-     * @return void
-     */
-    public static function addInstanceToPool(ProductCatalogy $obj, ?string $key = null): void
-    {
-        if (Propel::isInstancePoolingEnabled()) {
-            if (null === $key) {
-                $key = serialize([(null === $obj->getProductId() || is_scalar($obj->getProductId()) || is_callable([$obj->getProductId(), '__toString']) ? (string) $obj->getProductId() : $obj->getProductId()), (null === $obj->getCategoryId() || is_scalar($obj->getCategoryId()) || is_callable([$obj->getCategoryId(), '__toString']) ? (string) $obj->getCategoryId() : $obj->getCategoryId())]);
-            } // if key === null
-            self::$instances[$key] = $obj;
-        }
-    }
-
-    /**
-     * Removes an object from the instance pool.
-     *
-     * Propel keeps cached copies of objects in an instance pool when they are retrieved
-     * from the database.  In some cases -- especially when you override doDelete
-     * methods in your stub classes -- you may need to explicitly remove objects
-     * from the cache in order to prevent returning objects that no longer exist.
-     *
-     * @param mixed $value A \blatt5\ProductCatalogy object or a primary key value.
-     *
-     * @return void
-     */
-    public static function removeInstanceFromPool($value): void
-    {
-        if (Propel::isInstancePoolingEnabled() && null !== $value) {
-            if (is_object($value) && $value instanceof \blatt5\ProductCatalogy) {
-                $key = serialize([(null === $value->getProductId() || is_scalar($value->getProductId()) || is_callable([$value->getProductId(), '__toString']) ? (string) $value->getProductId() : $value->getProductId()), (null === $value->getCategoryId() || is_scalar($value->getCategoryId()) || is_callable([$value->getCategoryId(), '__toString']) ? (string) $value->getCategoryId() : $value->getCategoryId())]);
-
-            } elseif (is_array($value) && count($value) === 2) {
-                // assume we've been passed a primary key";
-                $key = serialize([(null === $value[0] || is_scalar($value[0]) || is_callable([$value[0], '__toString']) ? (string) $value[0] : $value[0]), (null === $value[1] || is_scalar($value[1]) || is_callable([$value[1], '__toString']) ? (string) $value[1] : $value[1])]);
-            } elseif ($value instanceof Criteria) {
-                self::$instances = [];
-
-                return;
-            } else {
-                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or \blatt5\ProductCatalogy object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value, true)));
-                throw $e;
-            }
-
-            unset(self::$instances[$key]);
-        }
     }
 
     /**
@@ -263,11 +188,11 @@ class ProductCatalogyTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow(array $row, int $offset = 0, string $indexType = TableMap::TYPE_NUM): ?string
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)] === null && $row[TableMap::TYPE_NUM == $indexType ? 1 + $offset : static::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return serialize([(null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)]), (null === $row[TableMap::TYPE_NUM == $indexType ? 1 + $offset : static::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 1 + $offset : static::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 1 + $offset : static::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 1 + $offset : static::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 1 + $offset : static::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)])]);
+        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)];
     }
 
     /**
@@ -284,20 +209,11 @@ class ProductCatalogyTableMap extends TableMap
      */
     public static function getPrimaryKeyFromRow(array $row, int $offset = 0, string $indexType = TableMap::TYPE_NUM)
     {
-            $pks = [];
-
-        $pks[] = (int) $row[
+        return (string) $row[
             $indexType == TableMap::TYPE_NUM
                 ? 0 + $offset
-                : self::translateFieldName('ProductId', TableMap::TYPE_PHPNAME, $indexType)
+                : self::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)
         ];
-        $pks[] = (int) $row[
-            $indexType == TableMap::TYPE_NUM
-                ? 1 + $offset
-                : self::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)
-        ];
-
-        return $pks;
     }
 
     /**
@@ -313,7 +229,7 @@ class ProductCatalogyTableMap extends TableMap
      */
     public static function getOMClass(bool $withPrefix = true): string
     {
-        return $withPrefix ? ProductCatalogyTableMap::CLASS_DEFAULT : ProductCatalogyTableMap::OM_CLASS;
+        return $withPrefix ? UserTableMap::CLASS_DEFAULT : UserTableMap::OM_CLASS;
     }
 
     /**
@@ -327,22 +243,22 @@ class ProductCatalogyTableMap extends TableMap
      *
      * @throws \Propel\Runtime\Exception\PropelException Any exceptions caught during processing will be
      *                         rethrown wrapped into a PropelException.
-     * @return array (ProductCatalogy object, last column rank)
+     * @return array (User object, last column rank)
      */
     public static function populateObject(array $row, int $offset = 0, string $indexType = TableMap::TYPE_NUM): array
     {
-        $key = ProductCatalogyTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = ProductCatalogyTableMap::getInstanceFromPool($key))) {
+        $key = UserTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = UserTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + ProductCatalogyTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + UserTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = ProductCatalogyTableMap::OM_CLASS;
-            /** @var ProductCatalogy $obj */
+            $cls = UserTableMap::OM_CLASS;
+            /** @var User $obj */
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            ProductCatalogyTableMap::addInstanceToPool($obj, $key);
+            UserTableMap::addInstanceToPool($obj, $key);
         }
 
         return [$obj, $col];
@@ -365,18 +281,18 @@ class ProductCatalogyTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = ProductCatalogyTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = ProductCatalogyTableMap::getInstanceFromPool($key))) {
+            $key = UserTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = UserTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
                 $results[] = $obj;
             } else {
-                /** @var ProductCatalogy $obj */
+                /** @var User $obj */
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                ProductCatalogyTableMap::addInstanceToPool($obj, $key);
+                UserTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -398,11 +314,11 @@ class ProductCatalogyTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, ?string $alias = null): void
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(ProductCatalogyTableMap::COL_PRODUCT_ID);
-            $criteria->addSelectColumn(ProductCatalogyTableMap::COL_CATEGORY_ID);
+            $criteria->addSelectColumn(UserTableMap::COL_USERNAME);
+            $criteria->addSelectColumn(UserTableMap::COL_PASSWORD);
         } else {
-            $criteria->addSelectColumn($alias . '.product_id');
-            $criteria->addSelectColumn($alias . '.category_id');
+            $criteria->addSelectColumn($alias . '.username');
+            $criteria->addSelectColumn($alias . '.password');
         }
     }
 
@@ -421,11 +337,11 @@ class ProductCatalogyTableMap extends TableMap
     public static function removeSelectColumns(Criteria $criteria, ?string $alias = null): void
     {
         if (null === $alias) {
-            $criteria->removeSelectColumn(ProductCatalogyTableMap::COL_PRODUCT_ID);
-            $criteria->removeSelectColumn(ProductCatalogyTableMap::COL_CATEGORY_ID);
+            $criteria->removeSelectColumn(UserTableMap::COL_USERNAME);
+            $criteria->removeSelectColumn(UserTableMap::COL_PASSWORD);
         } else {
-            $criteria->removeSelectColumn($alias . '.product_id');
-            $criteria->removeSelectColumn($alias . '.category_id');
+            $criteria->removeSelectColumn($alias . '.username');
+            $criteria->removeSelectColumn($alias . '.password');
         }
     }
 
@@ -438,13 +354,13 @@ class ProductCatalogyTableMap extends TableMap
      */
     public static function getTableMap(): TableMap
     {
-        return Propel::getServiceContainer()->getDatabaseMap(ProductCatalogyTableMap::DATABASE_NAME)->getTable(ProductCatalogyTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(UserTableMap::DATABASE_NAME)->getTable(UserTableMap::TABLE_NAME);
     }
 
     /**
-     * Performs a DELETE on the database, given a ProductCatalogy or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a User or Criteria object OR a primary key value.
      *
-     * @param mixed $values Criteria or ProductCatalogy object or primary key or array of primary keys
+     * @param mixed $values Criteria or User object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -455,37 +371,27 @@ class ProductCatalogyTableMap extends TableMap
      public static function doDelete($values, ?ConnectionInterface $con = null): int
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProductCatalogyTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \blatt5\ProductCatalogy) { // it's a model object
+        } elseif ($values instanceof \generated-classes\User) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(ProductCatalogyTableMap::DATABASE_NAME);
-            // primary key is composite; we therefore, expect
-            // the primary key passed to be an array of pkey values
-            if (count($values) == count($values, COUNT_RECURSIVE)) {
-                // array is not multi-dimensional
-                $values = [$values];
-            }
-            foreach ($values as $value) {
-                $criterion = $criteria->getNewCriterion(ProductCatalogyTableMap::COL_PRODUCT_ID, $value[0]);
-                $criterion->addAnd($criteria->getNewCriterion(ProductCatalogyTableMap::COL_CATEGORY_ID, $value[1]));
-                $criteria->addOr($criterion);
-            }
+            $criteria = new Criteria(UserTableMap::DATABASE_NAME);
+            $criteria->add(UserTableMap::COL_USERNAME, (array) $values, Criteria::IN);
         }
 
-        $query = ProductCatalogyQuery::create()->mergeWith($criteria);
+        $query = UserQuery::create()->mergeWith($criteria);
 
         if ($values instanceof Criteria) {
-            ProductCatalogyTableMap::clearInstancePool();
+            UserTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
             foreach ((array) $values as $singleval) {
-                ProductCatalogyTableMap::removeInstanceFromPool($singleval);
+                UserTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -493,20 +399,20 @@ class ProductCatalogyTableMap extends TableMap
     }
 
     /**
-     * Deletes all rows from the product_catalogy table.
+     * Deletes all rows from the user table.
      *
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).
      */
     public static function doDeleteAll(?ConnectionInterface $con = null): int
     {
-        return ProductCatalogyQuery::create()->doDeleteAll($con);
+        return UserQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a ProductCatalogy or Criteria object.
+     * Performs an INSERT on the database, given a User or Criteria object.
      *
-     * @param mixed $criteria Criteria or ProductCatalogy object containing data that is used to create the INSERT statement.
+     * @param mixed $criteria Criteria or User object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed The new primary key.
      * @throws \Propel\Runtime\Exception\PropelException Any exceptions caught during processing will be
@@ -515,18 +421,18 @@ class ProductCatalogyTableMap extends TableMap
     public static function doInsert($criteria, ?ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProductCatalogyTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from ProductCatalogy object
+            $criteria = $criteria->buildCriteria(); // build Criteria from User object
         }
 
 
         // Set the correct dbName
-        $query = ProductCatalogyQuery::create()->mergeWith($criteria);
+        $query = UserQuery::create()->mergeWith($criteria);
 
         // use transaction because $criteria could contain info
         // for more than one table (I guess, conceivably)

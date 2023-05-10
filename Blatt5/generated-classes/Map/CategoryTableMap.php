@@ -1,6 +1,6 @@
 <?php
 
-namespace blatt5\Map;
+namespace generated-classes\Map;
 
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
@@ -11,8 +11,8 @@ use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\RelationMap;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Map\TableMapTrait;
-use blatt5\Category;
-use blatt5\CategoryQuery;
+use generated-classes\Category;
+use generated-classes\CategoryQuery;
 
 
 /**
@@ -33,7 +33,7 @@ class CategoryTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    public const CLASS_NAME = 'blatt5.Map.CategoryTableMap';
+    public const CLASS_NAME = 'generated-classes.Map.CategoryTableMap';
 
     /**
      * The default database name for this class
@@ -53,12 +53,12 @@ class CategoryTableMap extends TableMap
     /**
      * The related Propel class for this table
      */
-    public const OM_CLASS = '\\blatt5\\Category';
+    public const OM_CLASS = '\\generated-classes\\Category';
 
     /**
      * A class that can be returned by this tableMap
      */
-    public const CLASS_DEFAULT = 'blatt5.Category';
+    public const CLASS_DEFAULT = 'generated-classes.Category';
 
     /**
      * The total number of columns
@@ -169,8 +169,8 @@ class CategoryTableMap extends TableMap
         $this->setName('Category');
         $this->setPhpName('Category');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\blatt5\\Category');
-        $this->setPackage('blatt5');
+        $this->setClassName('\\generated-classes\\Category');
+        $this->setPackage('generated-classes');
         $this->setUseIdGenerator(false);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, 10, null);
@@ -185,7 +185,7 @@ class CategoryTableMap extends TableMap
      */
     public function buildRelations(): void
     {
-        $this->addRelation('ProductCatalogy', '\\blatt5\\ProductCatalogy', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('ProductCatalogy', '\\generated-classes\\ProductCatalogy', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':category_id',
@@ -413,7 +413,7 @@ class CategoryTableMap extends TableMap
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \blatt5\Category) { // it's a model object
+        } elseif ($values instanceof \generated-classes\Category) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks

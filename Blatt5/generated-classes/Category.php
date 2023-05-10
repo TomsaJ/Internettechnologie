@@ -1,11 +1,11 @@
 <?php
 
-namespace blatt5;
+namespace generated-classes;
 
-use blatt5\Base\Product as BaseProduct;
+use generated-classes\Base\Category as BaseCategory;
 
 /**
- * Skeleton subclass for representing a row from the 'Product' table.
+ * Skeleton subclass for representing a row from the 'Category' table.
  *
  *
  *
@@ -13,7 +13,7 @@ use blatt5\Base\Product as BaseProduct;
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  */
-class Product extends BaseProduct
+class Category extends BaseCategory
 {
 
 }

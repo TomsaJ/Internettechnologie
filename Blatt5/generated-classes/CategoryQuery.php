@@ -1,8 +1,8 @@
 <?php
 
-namespace blatt5;
+namespace generated-classes;
 
-use blatt5\Base\CategoryQuery as BaseCategoryQuery;
+use generated-classes\Base\CategoryQuery as BaseCategoryQuery;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'Category' table.

@@ -1,6 +1,6 @@
 <?php
 
-namespace blatt5\Base;
+namespace generated-classes\Base;
 
 use \Exception;
 use \PDO;
@@ -9,35 +9,30 @@ use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 use Propel\Runtime\Collection\Collection;
-use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\BadMethodCallException;
 use Propel\Runtime\Exception\LogicException;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
-use blatt5\Product as ChildProduct;
-use blatt5\ProductCatalogy as ChildProductCatalogy;
-use blatt5\ProductCatalogyQuery as ChildProductCatalogyQuery;
-use blatt5\ProductQuery as ChildProductQuery;
-use blatt5\Map\ProductCatalogyTableMap;
-use blatt5\Map\ProductTableMap;
+use generated-classes\UserQuery as ChildUserQuery;
+use generated-classes\Map\UserTableMap;
 
 /**
- * Base class that represents a row from the 'Product' table.
+ * Base class that represents a row from the 'user' table.
  *
  *
  *
- * @package    propel.generator.blatt5.Base
+ * @package    propel.generator.generated-classes.Base
  */
-abstract class Product implements ActiveRecordInterface
+abstract class User implements ActiveRecordInterface
 {
     /**
      * TableMap class name
      *
      * @var string
      */
-    public const TABLE_MAP = '\\blatt5\\Map\\ProductTableMap';
+    public const TABLE_MAP = '\\generated-classes\\Map\\UserTableMap';
 
 
     /**
@@ -67,53 +62,18 @@ abstract class Product implements ActiveRecordInterface
     protected $virtualColumns = [];
 
     /**
-     * The value for the id field.
-     *
-     * @var        int
-     */
-    protected $id;
-
-    /**
-     * The value for the name field.
+     * The value for the username field.
      *
      * @var        string
      */
-    protected $name;
+    protected $username;
 
     /**
-     * The value for the price field.
-     * Euro inkl. MwSt
-     * @var        string|null
-     */
-    protected $price;
-
-    /**
-     * The value for the width field.
-     * cm
-     * @var        string|null
-     */
-    protected $width;
-
-    /**
-     * The value for the heigth field.
-     * cm
-     * @var        string|null
-     */
-    protected $heigth;
-
-    /**
-     * The value for the description field.
+     * The value for the password field.
      *
-     * @var        string|null
+     * @var        string
      */
-    protected $description;
-
-    /**
-     * @var        ObjectCollection|ChildProductCatalogy[] Collection to store aggregation of ChildProductCatalogy objects.
-     * @phpstan-var ObjectCollection&\Traversable<ChildProductCatalogy> Collection to store aggregation of ChildProductCatalogy objects.
-     */
-    protected $collProductCatalogies;
-    protected $collProductCatalogiesPartial;
+    protected $password;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -124,14 +84,7 @@ abstract class Product implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * An array of objects scheduled for deletion.
-     * @var ObjectCollection|ChildProductCatalogy[]
-     * @phpstan-var ObjectCollection&\Traversable<ChildProductCatalogy>
-     */
-    protected $productCatalogiesScheduledForDeletion = null;
-
-    /**
-     * Initializes internal state of blatt5\Base\Product object.
+     * Initializes internal state of generated-classes\Base\User object.
      */
     public function __construct()
     {
@@ -224,9 +177,9 @@ abstract class Product implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>Product</code> instance.  If
-     * <code>obj</code> is an instance of <code>Product</code>, delegates to
-     * <code>equals(Product)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>User</code> instance.  If
+     * <code>obj</code> is an instance of <code>User</code>, delegates to
+     * <code>equals(User)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param mixed $obj The object to compare to.
      * @return bool Whether equal to the object specified.
@@ -357,180 +310,60 @@ abstract class Product implements ActiveRecordInterface
     }
 
     /**
-     * Get the [id] column value.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get the [name] column value.
+     * Get the [username] column value.
      *
      * @return string
      */
-    public function getName()
+    public function getUsername()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
-     * Get the [price] column value.
-     * Euro inkl. MwSt
-     * @return string|null
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Get the [width] column value.
-     * cm
-     * @return string|null
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    /**
-     * Get the [heigth] column value.
-     * cm
-     * @return string|null
-     */
-    public function getHeigth()
-    {
-        return $this->heigth;
-    }
-
-    /**
-     * Get the [description] column value.
+     * Get the [password] column value.
      *
-     * @return string|null
+     * @return string
      */
-    public function getDescription()
+    public function getPassword()
     {
-        return $this->description;
+        return $this->password;
     }
 
     /**
-     * Set the value of [id] column.
-     *
-     * @param int $v New value
-     * @return $this The current object (for fluent API support)
-     */
-    public function setId($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->id !== $v) {
-            $this->id = $v;
-            $this->modifiedColumns[ProductTableMap::COL_ID] = true;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the value of [name] column.
+     * Set the value of [username] column.
      *
      * @param string $v New value
      * @return $this The current object (for fluent API support)
      */
-    public function setName($v)
+    public function setUsername($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->name !== $v) {
-            $this->name = $v;
-            $this->modifiedColumns[ProductTableMap::COL_NAME] = true;
+        if ($this->username !== $v) {
+            $this->username = $v;
+            $this->modifiedColumns[UserTableMap::COL_USERNAME] = true;
         }
 
         return $this;
     }
 
     /**
-     * Set the value of [price] column.
-     * Euro inkl. MwSt
-     * @param string|null $v New value
-     * @return $this The current object (for fluent API support)
-     */
-    public function setPrice($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->price !== $v) {
-            $this->price = $v;
-            $this->modifiedColumns[ProductTableMap::COL_PRICE] = true;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the value of [width] column.
-     * cm
-     * @param string|null $v New value
-     * @return $this The current object (for fluent API support)
-     */
-    public function setWidth($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->width !== $v) {
-            $this->width = $v;
-            $this->modifiedColumns[ProductTableMap::COL_WIDTH] = true;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the value of [heigth] column.
-     * cm
-     * @param string|null $v New value
-     * @return $this The current object (for fluent API support)
-     */
-    public function setHeigth($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->heigth !== $v) {
-            $this->heigth = $v;
-            $this->modifiedColumns[ProductTableMap::COL_HEIGTH] = true;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the value of [description] column.
+     * Set the value of [password] column.
      *
-     * @param string|null $v New value
+     * @param string $v New value
      * @return $this The current object (for fluent API support)
      */
-    public function setDescription($v)
+    public function setPassword($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->description !== $v) {
-            $this->description = $v;
-            $this->modifiedColumns[ProductTableMap::COL_DESCRIPTION] = true;
+        if ($this->password !== $v) {
+            $this->password = $v;
+            $this->modifiedColumns[UserTableMap::COL_PASSWORD] = true;
         }
 
         return $this;
@@ -572,23 +405,11 @@ abstract class Product implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : ProductTableMap::translateFieldName('Id', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->id = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : UserTableMap::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->username = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : ProductTableMap::translateFieldName('Name', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->name = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : ProductTableMap::translateFieldName('Price', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->price = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ProductTableMap::translateFieldName('Width', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->width = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProductTableMap::translateFieldName('Heigth', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->heigth = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ProductTableMap::translateFieldName('Description', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->description = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : UserTableMap::translateFieldName('Password', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->password = (null !== $col) ? (string) $col : null;
 
             $this->resetModified();
             $this->setNew(false);
@@ -597,10 +418,10 @@ abstract class Product implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 6; // 6 = ProductTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 2; // 2 = UserTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\blatt5\\Product'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\generated-classes\\User'), 0, $e);
         }
     }
 
@@ -643,13 +464,13 @@ abstract class Product implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(ProductTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(UserTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildProductQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildUserQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -658,8 +479,6 @@ abstract class Product implements ActiveRecordInterface
         $this->hydrate($row, 0, true, $dataFetcher->getIndexType()); // rehydrate
 
         if ($deep) {  // also de-associate any related objects?
-
-            $this->collProductCatalogies = null;
 
         } // if (deep)
     }
@@ -670,8 +489,8 @@ abstract class Product implements ActiveRecordInterface
      * @param ConnectionInterface $con
      * @return void
      * @throws \Propel\Runtime\Exception\PropelException
-     * @see Product::setDeleted()
-     * @see Product::isDeleted()
+     * @see User::setDeleted()
+     * @see User::isDeleted()
      */
     public function delete(?ConnectionInterface $con = null): void
     {
@@ -680,11 +499,11 @@ abstract class Product implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProductTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserTableMap::DATABASE_NAME);
         }
 
         $con->transaction(function () use ($con) {
-            $deleteQuery = ChildProductQuery::create()
+            $deleteQuery = ChildUserQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -719,7 +538,7 @@ abstract class Product implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProductTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(UserTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
@@ -738,7 +557,7 @@ abstract class Product implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                ProductTableMap::addInstanceToPool($this);
+                UserTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -775,23 +594,6 @@ abstract class Product implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->productCatalogiesScheduledForDeletion !== null) {
-                if (!$this->productCatalogiesScheduledForDeletion->isEmpty()) {
-                    \blatt5\ProductCatalogyQuery::create()
-                        ->filterByPrimaryKeys($this->productCatalogiesScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
-                    $this->productCatalogiesScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collProductCatalogies !== null) {
-                foreach ($this->collProductCatalogies as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
-            }
-
             $this->alreadyInSave = false;
 
         }
@@ -814,27 +616,15 @@ abstract class Product implements ActiveRecordInterface
 
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(ProductTableMap::COL_ID)) {
-            $modifiedColumns[':p' . $index++]  = 'id';
+        if ($this->isColumnModified(UserTableMap::COL_USERNAME)) {
+            $modifiedColumns[':p' . $index++]  = 'username';
         }
-        if ($this->isColumnModified(ProductTableMap::COL_NAME)) {
-            $modifiedColumns[':p' . $index++]  = 'name';
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_PRICE)) {
-            $modifiedColumns[':p' . $index++]  = 'price';
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_WIDTH)) {
-            $modifiedColumns[':p' . $index++]  = 'width';
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_HEIGTH)) {
-            $modifiedColumns[':p' . $index++]  = 'heigth';
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_DESCRIPTION)) {
-            $modifiedColumns[':p' . $index++]  = 'description';
+        if ($this->isColumnModified(UserTableMap::COL_PASSWORD)) {
+            $modifiedColumns[':p' . $index++]  = 'password';
         }
 
         $sql = sprintf(
-            'INSERT INTO Product (%s) VALUES (%s)',
+            'INSERT INTO user (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -843,28 +633,12 @@ abstract class Product implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'id':
-                        $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
+                    case 'username':
+                        $stmt->bindValue($identifier, $this->username, PDO::PARAM_STR);
 
                         break;
-                    case 'name':
-                        $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
-
-                        break;
-                    case 'price':
-                        $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
-
-                        break;
-                    case 'width':
-                        $stmt->bindValue($identifier, $this->width, PDO::PARAM_STR);
-
-                        break;
-                    case 'heigth':
-                        $stmt->bindValue($identifier, $this->heigth, PDO::PARAM_STR);
-
-                        break;
-                    case 'description':
-                        $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
+                    case 'password':
+                        $stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
 
                         break;
                 }
@@ -906,7 +680,7 @@ abstract class Product implements ActiveRecordInterface
      */
     public function getByName(string $name, string $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = ProductTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = UserTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -923,22 +697,10 @@ abstract class Product implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getId();
+                return $this->getUsername();
 
             case 1:
-                return $this->getName();
-
-            case 2:
-                return $this->getPrice();
-
-            case 3:
-                return $this->getWidth();
-
-            case 4:
-                return $this->getHeigth();
-
-            case 5:
-                return $this->getDescription();
+                return $this->getPassword();
 
             default:
                 return null;
@@ -956,47 +718,25 @@ abstract class Product implements ActiveRecordInterface
      *                    Defaults to TableMap::TYPE_PHPNAME.
      * @param bool $includeLazyLoadColumns (optional) Whether to include lazy loaded columns. Defaults to TRUE.
      * @param array $alreadyDumpedObjects List of objects to skip to avoid recursion
-     * @param bool $includeForeignObjects (optional) Whether to include hydrated related objects. Default to FALSE.
      *
      * @return array An associative array containing the field names (as keys) and field values
      */
-    public function toArray(string $keyType = TableMap::TYPE_PHPNAME, bool $includeLazyLoadColumns = true, array $alreadyDumpedObjects = [], bool $includeForeignObjects = false): array
+    public function toArray(string $keyType = TableMap::TYPE_PHPNAME, bool $includeLazyLoadColumns = true, array $alreadyDumpedObjects = []): array
     {
-        if (isset($alreadyDumpedObjects['Product'][$this->hashCode()])) {
+        if (isset($alreadyDumpedObjects['User'][$this->hashCode()])) {
             return ['*RECURSION*'];
         }
-        $alreadyDumpedObjects['Product'][$this->hashCode()] = true;
-        $keys = ProductTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['User'][$this->hashCode()] = true;
+        $keys = UserTableMap::getFieldNames($keyType);
         $result = [
-            $keys[0] => $this->getId(),
-            $keys[1] => $this->getName(),
-            $keys[2] => $this->getPrice(),
-            $keys[3] => $this->getWidth(),
-            $keys[4] => $this->getHeigth(),
-            $keys[5] => $this->getDescription(),
+            $keys[0] => $this->getUsername(),
+            $keys[1] => $this->getPassword(),
         ];
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
             $result[$key] = $virtualColumn;
         }
 
-        if ($includeForeignObjects) {
-            if (null !== $this->collProductCatalogies) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'productCatalogies';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'product_catalogies';
-                        break;
-                    default:
-                        $key = 'ProductCatalogies';
-                }
-
-                $result[$key] = $this->collProductCatalogies->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-            }
-        }
 
         return $result;
     }
@@ -1014,7 +754,7 @@ abstract class Product implements ActiveRecordInterface
      */
     public function setByName(string $name, $value, string $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = ProductTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = UserTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         $this->setByPosition($pos, $value);
 
@@ -1033,22 +773,10 @@ abstract class Product implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                $this->setId($value);
+                $this->setUsername($value);
                 break;
             case 1:
-                $this->setName($value);
-                break;
-            case 2:
-                $this->setPrice($value);
-                break;
-            case 3:
-                $this->setWidth($value);
-                break;
-            case 4:
-                $this->setHeigth($value);
-                break;
-            case 5:
-                $this->setDescription($value);
+                $this->setPassword($value);
                 break;
         } // switch()
 
@@ -1074,25 +802,13 @@ abstract class Product implements ActiveRecordInterface
      */
     public function fromArray(array $arr, string $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = ProductTableMap::getFieldNames($keyType);
+        $keys = UserTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setId($arr[$keys[0]]);
+            $this->setUsername($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setName($arr[$keys[1]]);
-        }
-        if (array_key_exists($keys[2], $arr)) {
-            $this->setPrice($arr[$keys[2]]);
-        }
-        if (array_key_exists($keys[3], $arr)) {
-            $this->setWidth($arr[$keys[3]]);
-        }
-        if (array_key_exists($keys[4], $arr)) {
-            $this->setHeigth($arr[$keys[4]]);
-        }
-        if (array_key_exists($keys[5], $arr)) {
-            $this->setDescription($arr[$keys[5]]);
+            $this->setPassword($arr[$keys[1]]);
         }
 
         return $this;
@@ -1135,25 +851,13 @@ abstract class Product implements ActiveRecordInterface
      */
     public function buildCriteria(): Criteria
     {
-        $criteria = new Criteria(ProductTableMap::DATABASE_NAME);
+        $criteria = new Criteria(UserTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(ProductTableMap::COL_ID)) {
-            $criteria->add(ProductTableMap::COL_ID, $this->id);
+        if ($this->isColumnModified(UserTableMap::COL_USERNAME)) {
+            $criteria->add(UserTableMap::COL_USERNAME, $this->username);
         }
-        if ($this->isColumnModified(ProductTableMap::COL_NAME)) {
-            $criteria->add(ProductTableMap::COL_NAME, $this->name);
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_PRICE)) {
-            $criteria->add(ProductTableMap::COL_PRICE, $this->price);
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_WIDTH)) {
-            $criteria->add(ProductTableMap::COL_WIDTH, $this->width);
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_HEIGTH)) {
-            $criteria->add(ProductTableMap::COL_HEIGTH, $this->heigth);
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_DESCRIPTION)) {
-            $criteria->add(ProductTableMap::COL_DESCRIPTION, $this->description);
+        if ($this->isColumnModified(UserTableMap::COL_PASSWORD)) {
+            $criteria->add(UserTableMap::COL_PASSWORD, $this->password);
         }
 
         return $criteria;
@@ -1171,8 +875,8 @@ abstract class Product implements ActiveRecordInterface
      */
     public function buildPkeyCriteria(): Criteria
     {
-        $criteria = ChildProductQuery::create();
-        $criteria->add(ProductTableMap::COL_ID, $this->id);
+        $criteria = ChildUserQuery::create();
+        $criteria->add(UserTableMap::COL_USERNAME, $this->username);
 
         return $criteria;
     }
@@ -1185,7 +889,7 @@ abstract class Product implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getId();
+        $validPk = null !== $this->getUsername();
 
         $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
@@ -1201,22 +905,22 @@ abstract class Product implements ActiveRecordInterface
 
     /**
      * Returns the primary key for this object (row).
-     * @return int
+     * @return string
      */
     public function getPrimaryKey()
     {
-        return $this->getId();
+        return $this->getUsername();
     }
 
     /**
-     * Generic method to set the primary key (id column).
+     * Generic method to set the primary key (username column).
      *
-     * @param int|null $key Primary key.
+     * @param string|null $key Primary key.
      * @return void
      */
-    public function setPrimaryKey(?int $key = null): void
+    public function setPrimaryKey(?string $key = null): void
     {
-        $this->setId($key);
+        $this->setUsername($key);
     }
 
     /**
@@ -1226,7 +930,7 @@ abstract class Product implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull(): bool
     {
-        return null === $this->getId();
+        return null === $this->getUsername();
     }
 
     /**
@@ -1235,7 +939,7 @@ abstract class Product implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param object $copyObj An object of \blatt5\Product (or compatible) type.
+     * @param object $copyObj An object of \generated-classes\User (or compatible) type.
      * @param bool $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param bool $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws \Propel\Runtime\Exception\PropelException
@@ -1243,26 +947,8 @@ abstract class Product implements ActiveRecordInterface
      */
     public function copyInto(object $copyObj, bool $deepCopy = false, bool $makeNew = true): void
     {
-        $copyObj->setId($this->getId());
-        $copyObj->setName($this->getName());
-        $copyObj->setPrice($this->getPrice());
-        $copyObj->setWidth($this->getWidth());
-        $copyObj->setHeigth($this->getHeigth());
-        $copyObj->setDescription($this->getDescription());
-
-        if ($deepCopy) {
-            // important: temporarily setNew(false) because this affects the behavior of
-            // the getter/setter methods for fkey referrer objects.
-            $copyObj->setNew(false);
-
-            foreach ($this->getProductCatalogies() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addProductCatalogy($relObj->copy($deepCopy));
-                }
-            }
-
-        } // if ($deepCopy)
-
+        $copyObj->setUsername($this->getUsername());
+        $copyObj->setPassword($this->getPassword());
         if ($makeNew) {
             $copyObj->setNew(true);
         }
@@ -1277,7 +963,7 @@ abstract class Product implements ActiveRecordInterface
      * objects.
      *
      * @param bool $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \blatt5\Product Clone of current object.
+     * @return \generated-classes\User Clone of current object.
      * @throws \Propel\Runtime\Exception\PropelException
      */
     public function copy(bool $deepCopy = false)
@@ -1290,291 +976,6 @@ abstract class Product implements ActiveRecordInterface
         return $copyObj;
     }
 
-
-    /**
-     * Initializes a collection based on the name of a relation.
-     * Avoids crafting an 'init[$relationName]s' method name
-     * that wouldn't work when StandardEnglishPluralizer is used.
-     *
-     * @param string $relationName The name of the relation to initialize
-     * @return void
-     */
-    public function initRelation($relationName): void
-    {
-        if ('ProductCatalogy' === $relationName) {
-            $this->initProductCatalogies();
-            return;
-        }
-    }
-
-    /**
-     * Clears out the collProductCatalogies collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return $this
-     * @see addProductCatalogies()
-     */
-    public function clearProductCatalogies()
-    {
-        $this->collProductCatalogies = null; // important to set this to NULL since that means it is uninitialized
-
-        return $this;
-    }
-
-    /**
-     * Reset is the collProductCatalogies collection loaded partially.
-     *
-     * @return void
-     */
-    public function resetPartialProductCatalogies($v = true): void
-    {
-        $this->collProductCatalogiesPartial = $v;
-    }
-
-    /**
-     * Initializes the collProductCatalogies collection.
-     *
-     * By default this just sets the collProductCatalogies collection to an empty array (like clearcollProductCatalogies());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param bool $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initProductCatalogies(bool $overrideExisting = true): void
-    {
-        if (null !== $this->collProductCatalogies && !$overrideExisting) {
-            return;
-        }
-
-        $collectionClassName = ProductCatalogyTableMap::getTableMap()->getCollectionClassName();
-
-        $this->collProductCatalogies = new $collectionClassName;
-        $this->collProductCatalogies->setModel('\blatt5\ProductCatalogy');
-    }
-
-    /**
-     * Gets an array of ChildProductCatalogy objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this ChildProduct is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param ConnectionInterface $con optional connection object
-     * @return ObjectCollection|ChildProductCatalogy[] List of ChildProductCatalogy objects
-     * @phpstan-return ObjectCollection&\Traversable<ChildProductCatalogy> List of ChildProductCatalogy objects
-     * @throws \Propel\Runtime\Exception\PropelException
-     */
-    public function getProductCatalogies(?Criteria $criteria = null, ?ConnectionInterface $con = null)
-    {
-        $partial = $this->collProductCatalogiesPartial && !$this->isNew();
-        if (null === $this->collProductCatalogies || null !== $criteria || $partial) {
-            if ($this->isNew()) {
-                // return empty collection
-                if (null === $this->collProductCatalogies) {
-                    $this->initProductCatalogies();
-                } else {
-                    $collectionClassName = ProductCatalogyTableMap::getTableMap()->getCollectionClassName();
-
-                    $collProductCatalogies = new $collectionClassName;
-                    $collProductCatalogies->setModel('\blatt5\ProductCatalogy');
-
-                    return $collProductCatalogies;
-                }
-            } else {
-                $collProductCatalogies = ChildProductCatalogyQuery::create(null, $criteria)
-                    ->filterByProduct($this)
-                    ->find($con);
-
-                if (null !== $criteria) {
-                    if (false !== $this->collProductCatalogiesPartial && count($collProductCatalogies)) {
-                        $this->initProductCatalogies(false);
-
-                        foreach ($collProductCatalogies as $obj) {
-                            if (false == $this->collProductCatalogies->contains($obj)) {
-                                $this->collProductCatalogies->append($obj);
-                            }
-                        }
-
-                        $this->collProductCatalogiesPartial = true;
-                    }
-
-                    return $collProductCatalogies;
-                }
-
-                if ($partial && $this->collProductCatalogies) {
-                    foreach ($this->collProductCatalogies as $obj) {
-                        if ($obj->isNew()) {
-                            $collProductCatalogies[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collProductCatalogies = $collProductCatalogies;
-                $this->collProductCatalogiesPartial = false;
-            }
-        }
-
-        return $this->collProductCatalogies;
-    }
-
-    /**
-     * Sets a collection of ChildProductCatalogy objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param Collection $productCatalogies A Propel collection.
-     * @param ConnectionInterface $con Optional connection object
-     * @return $this The current object (for fluent API support)
-     */
-    public function setProductCatalogies(Collection $productCatalogies, ?ConnectionInterface $con = null)
-    {
-        /** @var ChildProductCatalogy[] $productCatalogiesToDelete */
-        $productCatalogiesToDelete = $this->getProductCatalogies(new Criteria(), $con)->diff($productCatalogies);
-
-
-        //since at least one column in the foreign key is at the same time a PK
-        //we can not just set a PK to NULL in the lines below. We have to store
-        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->productCatalogiesScheduledForDeletion = clone $productCatalogiesToDelete;
-
-        foreach ($productCatalogiesToDelete as $productCatalogyRemoved) {
-            $productCatalogyRemoved->setProduct(null);
-        }
-
-        $this->collProductCatalogies = null;
-        foreach ($productCatalogies as $productCatalogy) {
-            $this->addProductCatalogy($productCatalogy);
-        }
-
-        $this->collProductCatalogies = $productCatalogies;
-        $this->collProductCatalogiesPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related ProductCatalogy objects.
-     *
-     * @param Criteria $criteria
-     * @param bool $distinct
-     * @param ConnectionInterface $con
-     * @return int Count of related ProductCatalogy objects.
-     * @throws \Propel\Runtime\Exception\PropelException
-     */
-    public function countProductCatalogies(?Criteria $criteria = null, bool $distinct = false, ?ConnectionInterface $con = null): int
-    {
-        $partial = $this->collProductCatalogiesPartial && !$this->isNew();
-        if (null === $this->collProductCatalogies || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collProductCatalogies) {
-                return 0;
-            }
-
-            if ($partial && !$criteria) {
-                return count($this->getProductCatalogies());
-            }
-
-            $query = ChildProductCatalogyQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByProduct($this)
-                ->count($con);
-        }
-
-        return count($this->collProductCatalogies);
-    }
-
-    /**
-     * Method called to associate a ChildProductCatalogy object to this object
-     * through the ChildProductCatalogy foreign key attribute.
-     *
-     * @param ChildProductCatalogy $l ChildProductCatalogy
-     * @return $this The current object (for fluent API support)
-     */
-    public function addProductCatalogy(ChildProductCatalogy $l)
-    {
-        if ($this->collProductCatalogies === null) {
-            $this->initProductCatalogies();
-            $this->collProductCatalogiesPartial = true;
-        }
-
-        if (!$this->collProductCatalogies->contains($l)) {
-            $this->doAddProductCatalogy($l);
-
-            if ($this->productCatalogiesScheduledForDeletion and $this->productCatalogiesScheduledForDeletion->contains($l)) {
-                $this->productCatalogiesScheduledForDeletion->remove($this->productCatalogiesScheduledForDeletion->search($l));
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ChildProductCatalogy $productCatalogy The ChildProductCatalogy object to add.
-     */
-    protected function doAddProductCatalogy(ChildProductCatalogy $productCatalogy): void
-    {
-        $this->collProductCatalogies[]= $productCatalogy;
-        $productCatalogy->setProduct($this);
-    }
-
-    /**
-     * @param ChildProductCatalogy $productCatalogy The ChildProductCatalogy object to remove.
-     * @return $this The current object (for fluent API support)
-     */
-    public function removeProductCatalogy(ChildProductCatalogy $productCatalogy)
-    {
-        if ($this->getProductCatalogies()->contains($productCatalogy)) {
-            $pos = $this->collProductCatalogies->search($productCatalogy);
-            $this->collProductCatalogies->remove($pos);
-            if (null === $this->productCatalogiesScheduledForDeletion) {
-                $this->productCatalogiesScheduledForDeletion = clone $this->collProductCatalogies;
-                $this->productCatalogiesScheduledForDeletion->clear();
-            }
-            $this->productCatalogiesScheduledForDeletion[]= clone $productCatalogy;
-            $productCatalogy->setProduct(null);
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Product is new, it will return
-     * an empty collection; or if this Product has previously
-     * been saved, it will retrieve related ProductCatalogies from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Product.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param ConnectionInterface $con optional connection object
-     * @param string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return ObjectCollection|ChildProductCatalogy[] List of ChildProductCatalogy objects
-     * @phpstan-return ObjectCollection&\Traversable<ChildProductCatalogy}> List of ChildProductCatalogy objects
-     */
-    public function getProductCatalogiesJoinCategory(?Criteria $criteria = null, ?ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
-    {
-        $query = ChildProductCatalogyQuery::create(null, $criteria);
-        $query->joinWith('Category', $joinBehavior);
-
-        return $this->getProductCatalogies($query, $con);
-    }
-
     /**
      * Clears the current object, sets all attributes to their default values and removes
      * outgoing references as well as back-references (from other objects to this one. Results probably in a database
@@ -1584,12 +985,8 @@ abstract class Product implements ActiveRecordInterface
      */
     public function clear()
     {
-        $this->id = null;
-        $this->name = null;
-        $this->price = null;
-        $this->width = null;
-        $this->heigth = null;
-        $this->description = null;
+        $this->username = null;
+        $this->password = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
@@ -1611,14 +1008,8 @@ abstract class Product implements ActiveRecordInterface
     public function clearAllReferences(bool $deep = false)
     {
         if ($deep) {
-            if ($this->collProductCatalogies) {
-                foreach ($this->collProductCatalogies as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
         } // if ($deep)
 
-        $this->collProductCatalogies = null;
         return $this;
     }
 
@@ -1629,7 +1020,7 @@ abstract class Product implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(ProductTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(UserTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**

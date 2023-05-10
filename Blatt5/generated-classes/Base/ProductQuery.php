@@ -1,6 +1,6 @@
 <?php
 
-namespace blatt5\Base;
+namespace generated-classes\Base;
 
 use \Exception;
 use \PDO;
@@ -12,9 +12,9 @@ use Propel\Runtime\Collection\Collection;
 use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\PropelException;
-use blatt5\Product as ChildProduct;
-use blatt5\ProductQuery as ChildProductQuery;
-use blatt5\Map\ProductTableMap;
+use generated-classes\Product as ChildProduct;
+use generated-classes\ProductQuery as ChildProductQuery;
+use generated-classes\Map\ProductTableMap;
 
 /**
  * Base class that represents a query for the `Product` table.
@@ -51,7 +51,7 @@ use blatt5\Map\ProductTableMap;
  * @method     ChildProductQuery rightJoinWithProductCatalogy() Adds a RIGHT JOIN clause and with to the query using the ProductCatalogy relation
  * @method     ChildProductQuery innerJoinWithProductCatalogy() Adds a INNER JOIN clause and with to the query using the ProductCatalogy relation
  *
- * @method     \blatt5\ProductCatalogyQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \generated-classes\ProductCatalogyQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildProduct|null findOne(?ConnectionInterface $con = null) Return the first ChildProduct matching the query
  * @method     ChildProduct findOneOrCreate(?ConnectionInterface $con = null) Return the first ChildProduct matching the query, or a new ChildProduct object populated from the query conditions when no match is found
@@ -97,13 +97,13 @@ abstract class ProductQuery extends ModelCriteria
     protected $entityNotFoundExceptionClass = '\\Propel\\Runtime\\Exception\\EntityNotFoundException';
 
     /**
-     * Initializes internal state of \blatt5\Base\ProductQuery object.
+     * Initializes internal state of \generated-classes\Base\ProductQuery object.
      *
      * @param string $dbName The database name
      * @param string $modelName The phpName of a model, e.g. 'Book'
      * @param string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'default', $modelName = '\\blatt5\\Product', $modelAlias = null)
+    public function __construct($dbName = 'default', $modelName = '\\generated-classes\\Product', $modelAlias = null)
     {
         parent::__construct($dbName, $modelName, $modelAlias);
     }
@@ -510,16 +510,16 @@ abstract class ProductQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query by a related \blatt5\ProductCatalogy object
+     * Filter the query by a related \generated-classes\ProductCatalogy object
      *
-     * @param \blatt5\ProductCatalogy|ObjectCollection $productCatalogy the related object to use as filter
+     * @param \generated-classes\ProductCatalogy|ObjectCollection $productCatalogy the related object to use as filter
      * @param string|null $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this The current query, for fluid interface
      */
     public function filterByProductCatalogy($productCatalogy, ?string $comparison = null)
     {
-        if ($productCatalogy instanceof \blatt5\ProductCatalogy) {
+        if ($productCatalogy instanceof \generated-classes\ProductCatalogy) {
             $this
                 ->addUsingAlias(ProductTableMap::COL_ID, $productCatalogy->getProductId(), $comparison);
 
@@ -532,7 +532,7 @@ abstract class ProductQuery extends ModelCriteria
 
             return $this;
         } else {
-            throw new PropelException('filterByProductCatalogy() only accepts arguments of type \blatt5\ProductCatalogy or Collection');
+            throw new PropelException('filterByProductCatalogy() only accepts arguments of type \generated-classes\ProductCatalogy or Collection');
         }
     }
 
@@ -577,19 +577,19 @@ abstract class ProductQuery extends ModelCriteria
      *                                   to be used as main alias in the secondary query
      * @param string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
-     * @return \blatt5\ProductCatalogyQuery A secondary query class using the current class as primary query
+     * @return \generated-classes\ProductCatalogyQuery A secondary query class using the current class as primary query
      */
     public function useProductCatalogyQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
             ->joinProductCatalogy($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'ProductCatalogy', '\blatt5\ProductCatalogyQuery');
+            ->useQuery($relationAlias ? $relationAlias : 'ProductCatalogy', '\generated-classes\ProductCatalogyQuery');
     }
 
     /**
      * Use the ProductCatalogy relation ProductCatalogy object
      *
-     * @param callable(\blatt5\ProductCatalogyQuery):\blatt5\ProductCatalogyQuery $callable A function working on the related query
+     * @param callable(\generated-classes\ProductCatalogyQuery):\generated-classes\ProductCatalogyQuery $callable A function working on the related query
      *
      * @param string|null $relationAlias optional alias for the relation
      *
@@ -621,11 +621,11 @@ abstract class ProductQuery extends ModelCriteria
      * @param string|null $queryClass Allows to use a custom query class for the exists query, like ExtendedBookQuery::class
      * @param string $typeOfExists Either ExistsQueryCriterion::TYPE_EXISTS or ExistsQueryCriterion::TYPE_NOT_EXISTS
      *
-     * @return \blatt5\ProductCatalogyQuery The inner query object of the EXISTS statement
+     * @return \generated-classes\ProductCatalogyQuery The inner query object of the EXISTS statement
      */
     public function useProductCatalogyExistsQuery($modelAlias = null, $queryClass = null, $typeOfExists = 'EXISTS')
     {
-        /** @var $q \blatt5\ProductCatalogyQuery */
+        /** @var $q \generated-classes\ProductCatalogyQuery */
         $q = $this->useExistsQuery('ProductCatalogy', $modelAlias, $queryClass, $typeOfExists);
         return $q;
     }
@@ -638,11 +638,11 @@ abstract class ProductQuery extends ModelCriteria
      * @param string|null $modelAlias sets an alias for the nested query
      * @param string|null $queryClass Allows to use a custom query class for the exists query, like ExtendedBookQuery::class
      *
-     * @return \blatt5\ProductCatalogyQuery The inner query object of the NOT EXISTS statement
+     * @return \generated-classes\ProductCatalogyQuery The inner query object of the NOT EXISTS statement
      */
     public function useProductCatalogyNotExistsQuery($modelAlias = null, $queryClass = null)
     {
-        /** @var $q \blatt5\ProductCatalogyQuery */
+        /** @var $q \generated-classes\ProductCatalogyQuery */
         $q = $this->useExistsQuery('ProductCatalogy', $modelAlias, $queryClass, 'NOT EXISTS');
         return $q;
     }
@@ -656,11 +656,11 @@ abstract class ProductQuery extends ModelCriteria
      * @param string|null $queryClass Allows to use a custom query class for the IN query, like ExtendedBookQuery::class
      * @param string $typeOfIn Criteria::IN or Criteria::NOT_IN
      *
-     * @return \blatt5\ProductCatalogyQuery The inner query object of the IN statement
+     * @return \generated-classes\ProductCatalogyQuery The inner query object of the IN statement
      */
     public function useInProductCatalogyQuery($modelAlias = null, $queryClass = null, $typeOfIn = 'IN')
     {
-        /** @var $q \blatt5\ProductCatalogyQuery */
+        /** @var $q \generated-classes\ProductCatalogyQuery */
         $q = $this->useInQuery('ProductCatalogy', $modelAlias, $queryClass, $typeOfIn);
         return $q;
     }
@@ -673,11 +673,11 @@ abstract class ProductQuery extends ModelCriteria
      * @param string|null $modelAlias sets an alias for the nested query
      * @param string|null $queryClass Allows to use a custom query class for the NOT IN query, like ExtendedBookQuery::class
      *
-     * @return \blatt5\ProductCatalogyQuery The inner query object of the NOT IN statement
+     * @return \generated-classes\ProductCatalogyQuery The inner query object of the NOT IN statement
      */
     public function useNotInProductCatalogyQuery($modelAlias = null, $queryClass = null)
     {
-        /** @var $q \blatt5\ProductCatalogyQuery */
+        /** @var $q \generated-classes\ProductCatalogyQuery */
         $q = $this->useInQuery('ProductCatalogy', $modelAlias, $queryClass, 'NOT IN');
         return $q;
     }

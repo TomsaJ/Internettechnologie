@@ -1,6 +1,6 @@
 <?php
 
-namespace blatt5\Base;
+namespace generated-classes\Base;
 
 use \Exception;
 use \PDO;
@@ -15,19 +15,19 @@ use Propel\Runtime\Exception\LogicException;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
-use blatt5\Category as ChildCategory;
-use blatt5\CategoryQuery as ChildCategoryQuery;
-use blatt5\Product as ChildProduct;
-use blatt5\ProductCatalogyQuery as ChildProductCatalogyQuery;
-use blatt5\ProductQuery as ChildProductQuery;
-use blatt5\Map\ProductCatalogyTableMap;
+use generated-classes\Category as ChildCategory;
+use generated-classes\CategoryQuery as ChildCategoryQuery;
+use generated-classes\Product as ChildProduct;
+use generated-classes\ProductCatalogyQuery as ChildProductCatalogyQuery;
+use generated-classes\ProductQuery as ChildProductQuery;
+use generated-classes\Map\ProductCatalogyTableMap;
 
 /**
  * Base class that represents a row from the 'product_catalogy' table.
  *
  *
  *
- * @package    propel.generator.blatt5.Base
+ * @package    propel.generator.generated-classes.Base
  */
 abstract class ProductCatalogy implements ActiveRecordInterface
 {
@@ -36,7 +36,7 @@ abstract class ProductCatalogy implements ActiveRecordInterface
      *
      * @var string
      */
-    public const TABLE_MAP = '\\blatt5\\Map\\ProductCatalogyTableMap';
+    public const TABLE_MAP = '\\generated-classes\\Map\\ProductCatalogyTableMap';
 
 
     /**
@@ -98,7 +98,7 @@ abstract class ProductCatalogy implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * Initializes internal state of blatt5\Base\ProductCatalogy object.
+     * Initializes internal state of generated-classes\Base\ProductCatalogy object.
      */
     public function __construct()
     {
@@ -443,7 +443,7 @@ abstract class ProductCatalogy implements ActiveRecordInterface
             return $startcol + 2; // 2 = ProductCatalogyTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\blatt5\\ProductCatalogy'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\generated-classes\\ProductCatalogy'), 0, $e);
         }
     }
 
@@ -1043,7 +1043,7 @@ abstract class ProductCatalogy implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param object $copyObj An object of \blatt5\ProductCatalogy (or compatible) type.
+     * @param object $copyObj An object of \generated-classes\ProductCatalogy (or compatible) type.
      * @param bool $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param bool $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws \Propel\Runtime\Exception\PropelException
@@ -1067,7 +1067,7 @@ abstract class ProductCatalogy implements ActiveRecordInterface
      * objects.
      *
      * @param bool $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \blatt5\ProductCatalogy Clone of current object.
+     * @return \generated-classes\ProductCatalogy Clone of current object.
      * @throws \Propel\Runtime\Exception\PropelException
      */
     public function copy(bool $deepCopy = false)

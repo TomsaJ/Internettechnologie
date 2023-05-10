@@ -1,8 +1,8 @@
 <?php
 
-namespace blatt5;
+namespace generated-classes;
 
-use blatt5\Base\ProductCatalogyQuery as BaseProductCatalogyQuery;
+use generated-classes\Base\ProductCatalogyQuery as BaseProductCatalogyQuery;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'product_catalogy' table.

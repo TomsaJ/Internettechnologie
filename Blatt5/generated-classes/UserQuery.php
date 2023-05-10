@@ -1,11 +1,11 @@
 <?php
 
-namespace blatt5;
+namespace generated-classes;
 
-use blatt5\Base\Category as BaseCategory;
+use generated-classes\Base\UserQuery as BaseUserQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'Category' table.
+ * Skeleton subclass for performing query and update operations on the 'user' table.
  *
  *
  *
@@ -13,7 +13,7 @@ use blatt5\Base\Category as BaseCategory;
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  */
-class Category extends BaseCategory
+class UserQuery extends BaseUserQuery
 {
 
 }

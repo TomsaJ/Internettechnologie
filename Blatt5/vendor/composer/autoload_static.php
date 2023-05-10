@@ -114,8 +114,20 @@ class ComposerStaticInit471e76ba35bd3e3704ee7c5133be6733
     );
 
     public static $classMap = array (
+        'Category' => __DIR__ . '/../..' . '/generated-classes/Category.php',
+        'CategoryQuery' => __DIR__ . '/../..' . '/generated-classes/CategoryQuery.php',
+        'CategoryTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/CategoryTableMap.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
+        'Product' => __DIR__ . '/../..' . '/generated-classes/Product.php',
+        'ProductCatalogy' => __DIR__ . '/../..' . '/generated-classes/Base/ProductCatalogy.php',
+        'ProductCatalogyQuery' => __DIR__ . '/../..' . '/generated-classes/Base/ProductCatalogyQuery.php',
+        'ProductCatalogyTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/ProductCatalogyTableMap.php',
+        'ProductQuery' => __DIR__ . '/../..' . '/generated-classes/ProductQuery.php',
+        'ProductTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/ProductTableMap.php',
+        'User' => __DIR__ . '/../..' . '/generated-classes/User.php',
+        'UserQuery' => __DIR__ . '/../..' . '/generated-classes/UserQuery.php',
+        'UserTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/UserTableMap.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
