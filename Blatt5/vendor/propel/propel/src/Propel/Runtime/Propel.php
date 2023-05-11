@@ -17,7 +17,6 @@ use Propel\Runtime\ServiceContainer\ServiceContainerInterface;
 use Propel\Runtime\ServiceContainer\StandardServiceContainer;
 use Propel\Runtime\Util\Profiler;
 use Psr\Log\LoggerInterface;
-
 /**
  * Propel's main resource pool and initialization & configuration class.
  *
