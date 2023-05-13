@@ -23,8 +23,7 @@
 <body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Startseite</h1>
-  <a href="userinsert.php"> Test1</a>
-  <a href="insert_user.php"> Test</a>
+  <a href="InsertProduct2.php"> Test1</a>
 </body>
 <footer class = "foot">
   <div class="container">

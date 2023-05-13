@@ -1,3 +1,4 @@
+<html>
 <?php
 
 // setup the autoloading
@@ -22,10 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category->save();
         
         // Erfolgreiche Nachricht anzeigen
-        echo "Kategorie wurde erfolgreich hinzugefügt";
+        echo '<meta http-equiv="refresh" content="3; catalog.php">';
+        echo '<h1>Kategorie wurde erfolgreich hinzugefügt</h1>';
+        echo "Category:" .$name . "<br />";
+        echo "Description:" . $description;
     } catch (Exception $e) {
         // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
-        echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage();
+        echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage() . "<br />";
+        echo '<h1 style="color: red;">ID vorhanden</h1>';
+        echo '<a href="catalog.php" style="text-decoration:none">
+        <button class="textstyle8">  Back</button>
+        </a>';
+        
     }
 }
 ?>
+
+</html>

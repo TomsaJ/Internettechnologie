@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product->setName($name);
     $product->setPrice($price);
     $product->setWidth($width);
-    $product->setHeight($height);
+    $product->setHeigth($height);
     $product->setDescription($description);
     
     // Speichern Sie das Produkt in der Datenbank

@@ -1,3 +1,5 @@
+<html>
+<meta http-equiv="refresh" content="3; user.php">
 <?php
 
 // setup the autoloading
@@ -13,13 +15,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Neue Instanz des Propel-Modells 'User' erstellen
     $user = new User();
     $user->setUsername($username);
-    $user->setPassword($password);
+    $user->setPassword(sha1($password));
     
     // Eintrag in die Datenbank speichern
     $user->save();
     
     // Erfolgsmeldung anzeigen
-    echo 'Benutzer erfolgreich hinzugefügt.';
+    try {
+        // Die Kategorie in die Datenbank einfügen
+        $user->save();
+        
+        // Erfolgreiche Nachricht anzeigen
+        echo '<h1>User wurde erfolgreich hinzugefügt</h1>';
+        echo "User:" .$username . "<br />";
+        echo "Password:" . $password;
+    } catch (Exception $e) {
+        // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
+        echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage();
+    }
 }
 
 ?>
+
+</html>
