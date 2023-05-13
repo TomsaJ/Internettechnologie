@@ -7,5 +7,5 @@ require_once DIR . '/generated-conf/config.php';
 $user = new User();
 $user->setUsername("Banana");
 $user->setPassword(1235);
-$user->save();
+echo $user->save();
 ?>

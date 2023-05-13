@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -46,7 +45,7 @@
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
   <hr>
-  <form action="insert_user.php" method="POST" name="userForm" class="form">
+  <form action="insertuser.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="username">Benutzername:</label>
       <input type="text" id="username" name="username" maxlength="40" accesskey="b" required>
