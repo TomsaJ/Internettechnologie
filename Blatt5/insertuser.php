@@ -1,5 +1,5 @@
 <html>
-<meta http-equiv="refresh" content="3; user.php">
+
 <?php
 
 // setup the autoloading
@@ -17,8 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user->setUsername($username);
     $user->setPassword(sha1($password));
     
-    // Eintrag in die Datenbank speichern
-    $user->save();
     
     // Erfolgsmeldung anzeigen
     try {
@@ -26,12 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user->save();
         
         // Erfolgreiche Nachricht anzeigen
+        echo '<meta http-equiv="refresh" content="3; user.php">'; 
         echo '<h1>User wurde erfolgreich hinzugefügt</h1>';
         echo "User:" .$username . "<br />";
         echo "Password:" . $password;
     } catch (Exception $e) {
         // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
-        echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage();
+        echo'<h1 style="color: red;">ID vorhanden</h1>'; echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage();
+       
+        echo '<a href="catalog.php" style="text-decoration:none">
+        <button class="textstyle8">  Back</button>
+        </a>';
     }
 }
 
