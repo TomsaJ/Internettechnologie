@@ -23,4 +23,10 @@ Icon
 Icon
 *.ini
 Eclipse.app*
-Blatt5/
+*/Propel2-master/
+ATest/*
+org.*
+Test/*
+Blatt5 Kopie/*
+Projekt05.3/*
+Blatt6/*
