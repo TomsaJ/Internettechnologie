@@ -1,3 +1,11 @@
+<?php
+/*
+// Überprüfen Sie, ob der Benutzer authentifiziert ist
+if ($_SESSION['authenticated'] === true) {
+    // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
+    echo '<a href="neues_objekt_erstellen.php" class="btn btn-primary">Neues Objekt anlegen</a>';
+}*/
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,15 +17,15 @@
 <header>
 <nav>
   <ul>
-    <li><a href="index.php">Startseite</a></li>
-    <li><a href="user.php">Login</a></li>
-    <li><a href="catalog.php">Categories</a>
+    <li><a href="../frontend/index.php">Startseite</a></li>
+    <li><a href="../frontend/user.php">Login</a></li>
+    <li><a href="../frontend/catalog.php">Categories</a>
       <menu>
-        <li><a href="product.php">Product </a></li>
-        <li><a href="productdetails.php"> Product Details</a></li>
+        <li><a href="../frontend/product.php">Product </a></li>
+        <li><a href="../frontend/productdetails.php"> Product Details</a></li>
       </menu>
       </li>
-    <li><a href="contact.php">Contact us</a></li>
+    <li><a href="../frontend/contact.php">Contact us</a></li>
   </ul>
   </nav>
 </header>
@@ -27,7 +35,7 @@
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
-  <form action="insertcategory.php" method="POST" name="userForm" class="form">
+  <form action="../backend/insertcategory.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" id="id" name="id" accesskey="i" required>
@@ -46,18 +54,22 @@
   </form>
   <hr>
 </div>
-<table style = "width:100%">
-<thead>
-    <tr>
-      <th>Categorie</th>
-    </tr>
-  </thead>
-<tbody>
-    <tr>
-      <td><a href="product.php">Obst</a></td>
-    </tr>
-    </tbody>
-</table>
+<?php 
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
+use generatedclasses\CategoryQuery;
+
+$articles = CategoryQuery::create()->find();
+
+
+
+// Durchlaufen der Zeilen und Ausgabe der Daten
+foreach ($articles as $article) {
+    echo '<a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a><br>';
+    echo "<hr>";
+}
+
+?>
 </body>
 <footer class = "foot">
   <div class="container">

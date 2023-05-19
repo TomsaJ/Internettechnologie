@@ -37,7 +37,6 @@
   </table>
   <table name="user" idMethod="native" phpName="User">
     <column name="username" phpName="Username" type="VARCHAR" size="40" primaryKey="true" required="true"/>
-    <column name="salt" phpName="Salt" type="INTEGER" size="9" required="true"/>
     <column name="password" phpName="Password" type="CHAR" size="40" required="true"/>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>

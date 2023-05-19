@@ -8,7 +8,7 @@
 <header>
 <nav>
   <ul>
-    <li><a href="index.php">Startseite</a></li>
+    <li><a href="../index.php">Startseite</a></li>
     <li><a href="user.php">Login</a></li>
     <li><a href="catalog.php">Categories</a>
       <menu>
@@ -26,7 +26,8 @@
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
   <hr>
-  <form action="insertuser.php" method="POST" name="userForm" class="form">
+  <form action="../backend/insertuser.php" method="POST" name="userForm" class="form">
+
     <div class="form-group">
       <label for="username">Benutzername:</label>
       <input type="text" id="username" name="username" maxlength="40" accesskey="b" required>
@@ -45,7 +46,7 @@
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
   <hr>
-  <form action="insertuser.php" method="POST" name="userForm" class="form">
+  <form action="../backend/insertuser.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="username">Benutzername:</label>
       <input type="text" id="username" name="username" maxlength="40" accesskey="b" required>

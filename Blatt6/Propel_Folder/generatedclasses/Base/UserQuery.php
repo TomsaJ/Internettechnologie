@@ -18,11 +18,9 @@ use generatedclasses\Map\UserTableMap;
  * Base class that represents a query for the `user` table.
  *
  * @method     ChildUserQuery orderByUsername($order = Criteria::ASC) Order by the username column
- * @method     ChildUserQuery orderBySalt($order = Criteria::ASC) Order by the salt column
  * @method     ChildUserQuery orderByPassword($order = Criteria::ASC) Order by the password column
  *
  * @method     ChildUserQuery groupByUsername() Group by the username column
- * @method     ChildUserQuery groupBySalt() Group by the salt column
  * @method     ChildUserQuery groupByPassword() Group by the password column
  *
  * @method     ChildUserQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -37,14 +35,12 @@ use generatedclasses\Map\UserTableMap;
  * @method     ChildUser findOneOrCreate(?ConnectionInterface $con = null) Return the first ChildUser matching the query, or a new ChildUser object populated from the query conditions when no match is found
  *
  * @method     ChildUser|null findOneByUsername(string $username) Return the first ChildUser filtered by the username column
- * @method     ChildUser|null findOneBySalt(int $salt) Return the first ChildUser filtered by the salt column
  * @method     ChildUser|null findOneByPassword(string $password) Return the first ChildUser filtered by the password column
  *
  * @method     ChildUser requirePk($key, ?ConnectionInterface $con = null) Return the ChildUser by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUser requireOne(?ConnectionInterface $con = null) Return the first ChildUser matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildUser requireOneByUsername(string $username) Return the first ChildUser filtered by the username column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildUser requireOneBySalt(int $salt) Return the first ChildUser filtered by the salt column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUser requireOneByPassword(string $password) Return the first ChildUser filtered by the password column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildUser[]|Collection find(?ConnectionInterface $con = null) Return ChildUser objects based on current ModelCriteria
@@ -52,8 +48,6 @@ use generatedclasses\Map\UserTableMap;
  *
  * @method     ChildUser[]|Collection findByUsername(string|array<string> $username) Return ChildUser objects filtered by the username column
  * @psalm-method Collection&\Traversable<ChildUser> findByUsername(string|array<string> $username) Return ChildUser objects filtered by the username column
- * @method     ChildUser[]|Collection findBySalt(int|array<int> $salt) Return ChildUser objects filtered by the salt column
- * @psalm-method Collection&\Traversable<ChildUser> findBySalt(int|array<int> $salt) Return ChildUser objects filtered by the salt column
  * @method     ChildUser[]|Collection findByPassword(string|array<string> $password) Return ChildUser objects filtered by the password column
  * @psalm-method Collection&\Traversable<ChildUser> findByPassword(string|array<string> $password) Return ChildUser objects filtered by the password column
  *
@@ -155,7 +149,7 @@ abstract class UserQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT username, salt, password FROM user WHERE username = :p0';
+        $sql = 'SELECT username, password FROM user WHERE username = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);
@@ -273,49 +267,6 @@ abstract class UserQuery extends ModelCriteria
         }
 
         $this->addUsingAlias(UserTableMap::COL_USERNAME, $username, $comparison);
-
-        return $this;
-    }
-
-    /**
-     * Filter the query on the salt column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterBySalt(1234); // WHERE salt = 1234
-     * $query->filterBySalt(array(12, 34)); // WHERE salt IN (12, 34)
-     * $query->filterBySalt(array('min' => 12)); // WHERE salt > 12
-     * </code>
-     *
-     * @param mixed $salt The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param string|null $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this The current query, for fluid interface
-     */
-    public function filterBySalt($salt = null, ?string $comparison = null)
-    {
-        if (is_array($salt)) {
-            $useMinMax = false;
-            if (isset($salt['min'])) {
-                $this->addUsingAlias(UserTableMap::COL_SALT, $salt['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($salt['max'])) {
-                $this->addUsingAlias(UserTableMap::COL_SALT, $salt['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        $this->addUsingAlias(UserTableMap::COL_SALT, $salt, $comparison);
 
         return $this;
     }

@@ -67,7 +67,6 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
     `username` VARCHAR(40) NOT NULL,
-    `salt` INTEGER(9) NOT NULL,
     `password` CHAR(40) NOT NULL,
     PRIMARY KEY (`username`)
 ) ENGINE=InnoDB;

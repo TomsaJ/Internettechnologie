@@ -2,7 +2,7 @@
 	"require" : {
 		"propel/propel" : "~2.0@beta"
 	},"autoload": {
-    "classmap": ["generatedclasses/"]
+    "classmap": ["propel_folder/generatedclasses/"]
 }
 	
 }

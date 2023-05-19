@@ -1,9 +1,9 @@
 <html>
 <?php
 
-// setup the autoloading
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/generated-conf/config.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
+
 use generatedclasses\Category;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -69,13 +69,6 @@ abstract class User implements ActiveRecordInterface
     protected $username;
 
     /**
-     * The value for the salt field.
-     *
-     * @var        int
-     */
-    protected $salt;
-
-    /**
      * The value for the password field.
      *
      * @var        string
@@ -327,16 +320,6 @@ abstract class User implements ActiveRecordInterface
     }
 
     /**
-     * Get the [salt] column value.
-     *
-     * @return int
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    /**
      * Get the [password] column value.
      *
      * @return string
@@ -361,26 +344,6 @@ abstract class User implements ActiveRecordInterface
         if ($this->username !== $v) {
             $this->username = $v;
             $this->modifiedColumns[UserTableMap::COL_USERNAME] = true;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the value of [salt] column.
-     *
-     * @param int $v New value
-     * @return $this The current object (for fluent API support)
-     */
-    public function setSalt($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->salt !== $v) {
-            $this->salt = $v;
-            $this->modifiedColumns[UserTableMap::COL_SALT] = true;
         }
 
         return $this;
@@ -445,10 +408,7 @@ abstract class User implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : UserTableMap::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)];
             $this->username = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : UserTableMap::translateFieldName('Salt', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->salt = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : UserTableMap::translateFieldName('Password', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : UserTableMap::translateFieldName('Password', TableMap::TYPE_PHPNAME, $indexType)];
             $this->password = (null !== $col) ? (string) $col : null;
 
             $this->resetModified();
@@ -458,7 +418,7 @@ abstract class User implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 3; // 3 = UserTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 2; // 2 = UserTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\generatedclasses\\User'), 0, $e);
@@ -659,9 +619,6 @@ abstract class User implements ActiveRecordInterface
         if ($this->isColumnModified(UserTableMap::COL_USERNAME)) {
             $modifiedColumns[':p' . $index++]  = 'username';
         }
-        if ($this->isColumnModified(UserTableMap::COL_SALT)) {
-            $modifiedColumns[':p' . $index++]  = 'salt';
-        }
         if ($this->isColumnModified(UserTableMap::COL_PASSWORD)) {
             $modifiedColumns[':p' . $index++]  = 'password';
         }
@@ -678,10 +635,6 @@ abstract class User implements ActiveRecordInterface
                 switch ($columnName) {
                     case 'username':
                         $stmt->bindValue($identifier, $this->username, PDO::PARAM_STR);
-
-                        break;
-                    case 'salt':
-                        $stmt->bindValue($identifier, $this->salt, PDO::PARAM_INT);
 
                         break;
                     case 'password':
@@ -747,9 +700,6 @@ abstract class User implements ActiveRecordInterface
                 return $this->getUsername();
 
             case 1:
-                return $this->getSalt();
-
-            case 2:
                 return $this->getPassword();
 
             default:
@@ -780,8 +730,7 @@ abstract class User implements ActiveRecordInterface
         $keys = UserTableMap::getFieldNames($keyType);
         $result = [
             $keys[0] => $this->getUsername(),
-            $keys[1] => $this->getSalt(),
-            $keys[2] => $this->getPassword(),
+            $keys[1] => $this->getPassword(),
         ];
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -827,9 +776,6 @@ abstract class User implements ActiveRecordInterface
                 $this->setUsername($value);
                 break;
             case 1:
-                $this->setSalt($value);
-                break;
-            case 2:
                 $this->setPassword($value);
                 break;
         } // switch()
@@ -862,10 +808,7 @@ abstract class User implements ActiveRecordInterface
             $this->setUsername($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setSalt($arr[$keys[1]]);
-        }
-        if (array_key_exists($keys[2], $arr)) {
-            $this->setPassword($arr[$keys[2]]);
+            $this->setPassword($arr[$keys[1]]);
         }
 
         return $this;
@@ -912,9 +855,6 @@ abstract class User implements ActiveRecordInterface
 
         if ($this->isColumnModified(UserTableMap::COL_USERNAME)) {
             $criteria->add(UserTableMap::COL_USERNAME, $this->username);
-        }
-        if ($this->isColumnModified(UserTableMap::COL_SALT)) {
-            $criteria->add(UserTableMap::COL_SALT, $this->salt);
         }
         if ($this->isColumnModified(UserTableMap::COL_PASSWORD)) {
             $criteria->add(UserTableMap::COL_PASSWORD, $this->password);
@@ -1008,7 +948,6 @@ abstract class User implements ActiveRecordInterface
     public function copyInto(object $copyObj, bool $deepCopy = false, bool $makeNew = true): void
     {
         $copyObj->setUsername($this->getUsername());
-        $copyObj->setSalt($this->getSalt());
         $copyObj->setPassword($this->getPassword());
         if ($makeNew) {
             $copyObj->setNew(true);
@@ -1047,7 +986,6 @@ abstract class User implements ActiveRecordInterface
     public function clear()
     {
         $this->username = null;
-        $this->salt = null;
         $this->password = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();

@@ -63,7 +63,7 @@ class UserTableMap extends TableMap
     /**
      * The total number of columns
      */
-    public const NUM_COLUMNS = 3;
+    public const NUM_COLUMNS = 2;
 
     /**
      * The number of lazy-loaded columns
@@ -73,17 +73,12 @@ class UserTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    public const NUM_HYDRATE_COLUMNS = 3;
+    public const NUM_HYDRATE_COLUMNS = 2;
 
     /**
      * the column name for the username field
      */
     public const COL_USERNAME = 'user.username';
-
-    /**
-     * the column name for the salt field
-     */
-    public const COL_SALT = 'user.salt';
 
     /**
      * the column name for the password field
@@ -104,11 +99,11 @@ class UserTableMap extends TableMap
      * @var array<string, mixed>
      */
     protected static $fieldNames = [
-        self::TYPE_PHPNAME       => ['Username', 'Salt', 'Password', ],
-        self::TYPE_CAMELNAME     => ['username', 'salt', 'password', ],
-        self::TYPE_COLNAME       => [UserTableMap::COL_USERNAME, UserTableMap::COL_SALT, UserTableMap::COL_PASSWORD, ],
-        self::TYPE_FIELDNAME     => ['username', 'salt', 'password', ],
-        self::TYPE_NUM           => [0, 1, 2, ]
+        self::TYPE_PHPNAME       => ['Username', 'Password', ],
+        self::TYPE_CAMELNAME     => ['username', 'password', ],
+        self::TYPE_COLNAME       => [UserTableMap::COL_USERNAME, UserTableMap::COL_PASSWORD, ],
+        self::TYPE_FIELDNAME     => ['username', 'password', ],
+        self::TYPE_NUM           => [0, 1, ]
     ];
 
     /**
@@ -120,11 +115,11 @@ class UserTableMap extends TableMap
      * @var array<string, mixed>
      */
     protected static $fieldKeys = [
-        self::TYPE_PHPNAME       => ['Username' => 0, 'Salt' => 1, 'Password' => 2, ],
-        self::TYPE_CAMELNAME     => ['username' => 0, 'salt' => 1, 'password' => 2, ],
-        self::TYPE_COLNAME       => [UserTableMap::COL_USERNAME => 0, UserTableMap::COL_SALT => 1, UserTableMap::COL_PASSWORD => 2, ],
-        self::TYPE_FIELDNAME     => ['username' => 0, 'salt' => 1, 'password' => 2, ],
-        self::TYPE_NUM           => [0, 1, 2, ]
+        self::TYPE_PHPNAME       => ['Username' => 0, 'Password' => 1, ],
+        self::TYPE_CAMELNAME     => ['username' => 0, 'password' => 1, ],
+        self::TYPE_COLNAME       => [UserTableMap::COL_USERNAME => 0, UserTableMap::COL_PASSWORD => 1, ],
+        self::TYPE_FIELDNAME     => ['username' => 0, 'password' => 1, ],
+        self::TYPE_NUM           => [0, 1, ]
     ];
 
     /**
@@ -139,12 +134,6 @@ class UserTableMap extends TableMap
         'user.username' => 'USERNAME',
         'UserTableMap::COL_USERNAME' => 'USERNAME',
         'COL_USERNAME' => 'USERNAME',
-        'Salt' => 'SALT',
-        'User.Salt' => 'SALT',
-        'salt' => 'SALT',
-        'user.salt' => 'SALT',
-        'UserTableMap::COL_SALT' => 'SALT',
-        'COL_SALT' => 'SALT',
         'Password' => 'PASSWORD',
         'User.Password' => 'PASSWORD',
         'password' => 'PASSWORD',
@@ -171,7 +160,6 @@ class UserTableMap extends TableMap
         $this->setUseIdGenerator(false);
         // columns
         $this->addPrimaryKey('username', 'Username', 'VARCHAR', true, 40, null);
-        $this->addColumn('salt', 'Salt', 'INTEGER', true, 9, null);
         $this->addColumn('password', 'Password', 'CHAR', true, 40, null);
     }
 
@@ -327,11 +315,9 @@ class UserTableMap extends TableMap
     {
         if (null === $alias) {
             $criteria->addSelectColumn(UserTableMap::COL_USERNAME);
-            $criteria->addSelectColumn(UserTableMap::COL_SALT);
             $criteria->addSelectColumn(UserTableMap::COL_PASSWORD);
         } else {
             $criteria->addSelectColumn($alias . '.username');
-            $criteria->addSelectColumn($alias . '.salt');
             $criteria->addSelectColumn($alias . '.password');
         }
     }
@@ -352,11 +338,9 @@ class UserTableMap extends TableMap
     {
         if (null === $alias) {
             $criteria->removeSelectColumn(UserTableMap::COL_USERNAME);
-            $criteria->removeSelectColumn(UserTableMap::COL_SALT);
             $criteria->removeSelectColumn(UserTableMap::COL_PASSWORD);
         } else {
             $criteria->removeSelectColumn($alias . '.username');
-            $criteria->removeSelectColumn($alias . '.salt');
             $criteria->removeSelectColumn($alias . '.password');
         }
     }

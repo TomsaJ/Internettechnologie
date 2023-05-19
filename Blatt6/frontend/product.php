@@ -1,3 +1,14 @@
+<?php
+
+
+/*
+// Überprüfen Sie, ob der Benutzer authentifiziert ist
+if ($_SESSION['authenticated'] === true) {
+    // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
+    echo '<a href="neues_objekt_erstellen.php" class="btn btn-primary">Neues Objekt anlegen</a>';
+}*/
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,14 +20,14 @@
 <nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
-    <li><a href="user.php">Login</a></li>
-    <li><a href="catalog.php">Categories</a>
+    <li><a href="../frontend/user.php">Login</a></li>
+    <li><a href="../frontend/catalog.php">Categories</a>
       <menu>
-        <li><a href="product.php">Product </a></li>
-        <li><a href="productdetails.php"> Product Details</a></li>
+        <li><a href="../frontend/product.php">Product </a></li>
+        <li><a href="../frontend/productdetails.php"> Product Details</a></li>
       </menu>
       </li>
-    <li><a href="contact.php">Contact us</a></li>
+    <li><a href="../frontend/contact.php">Contact us</a></li>
   </ul>
   </nav>
 </header>
@@ -26,7 +37,7 @@
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
-  <form action="insertproduct.php" method="POST" name="userForm" class="form">
+  <form action="../backendend/insertproduct.php" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">Category ID:</label>
       <input type="number" id="cat_id" name="cat_id" accesskey="i" required>
@@ -60,30 +71,34 @@
     </div>
   </form>
 <hr>
+<?php 
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
+use generatedclasses\ProductQuery;
+use generatedclasses\ProductCatalogyQuery;
+
+$articleId = $_GET['id'];
+
+
+$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
+
+foreach ($PCId as $art) {
+    $productId = $art->getProductId();
+    $product = ProductQuery::create()->findPk($productId);
+    
+    if ($product !== null) {
+        echo "Id: ".$product->getId() . "<br>";
+        echo "Name: ".$product->getName() . "<br>";
+        echo "Preis: ".$product->getPrice(). "€ <br>" ;
+        echo "Breite: ".$product->getWidth(). "cm <br>" ;
+        echo "Höhe: ".$product->getHeigth(). "cm <br>" ;
+        echo "Beschreibung :". $product->getDescription(). "<br>" ;
+        echo "<hr>";
+    }
+}
+?>
 
 </div>
-<table style = "width:100%">
-  <thead>
-    <tr>
-      <th>Productname</th>
-      <th>Preis</th>
-    </tr>
-  </thead>
-  <tbody>
-  	<tr>
-      <td><a href="productdetails.php">Apfe</a></td>
-      <td>5€</td>
-    </tr>
-    <tr>
-      <td><a href="productdetails.php">Birne</a></td>
-      <td>3,50€</td>
-    </tr>
-    <tr>
-      <td><a href="productdetails.php">Melone</a></td>
-      <td>8€</td>
-    </tr>
-  </tbody>
-</table>
 </body>
 <footer class = "foot">
   <div class="container">
@@ -97,4 +112,4 @@
     </div>
   </div>
 </footer>
-</html>
+</html> 

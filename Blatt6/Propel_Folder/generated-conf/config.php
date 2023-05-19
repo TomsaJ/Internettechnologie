@@ -4,7 +4,7 @@ $serviceContainer->checkVersion(2);
 $serviceContainer->setAdapterClass('default', 'mysql');
 $manager = new \Propel\Runtime\Connection\ConnectionManagerSingle('default');
 $manager->setConfiguration(array (
-  'dsn' => 'mysql:host=eclipse;port=3306;dbname=catalog_Test',
+  'dsn' => 'mysql:host=eclipse;port=3306;dbname=catalog',
   'user' => 'root',
   'password' => '',
   'settings' =>

@@ -5,7 +5,7 @@ return [
             'connections' => [
                 'default' => [
                     'adapter' => 'mysql',
-                    'dsn' => 'mysql:host=eclipse;port=3306;dbname=catalog_Test',
+                    'dsn' => 'mysql:host=eclipse;port=3306;dbname=catalog',
                     'user' => 'root',
                     'password' => '',
                     'settings' => [
