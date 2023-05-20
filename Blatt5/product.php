@@ -28,8 +28,12 @@
 <hr>
   <form action="insertproduct.php" method="POST" name="userForm" class="form">
     <div class="form-group">
-      <label for="id">ID:</label>
-      <input type="number" id="id" name="id" accesskey="i" required>
+      <label for="id">Category ID:</label>
+      <input type="number" id="cat_id" name="cat_id" accesskey="i" required>
+    </div>
+    <div class="form-group">
+      <label for="id">Product ID:</label>
+      <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
     </div>
     <div class="form-group">
       <label for="name">Name:</label>

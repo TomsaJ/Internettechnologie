@@ -30,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Password:" . $password;
     } catch (Exception $e) {
         // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
-        echo'<h1 style="color: red;">ID vorhanden</h1>'; echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage();
+        echo'<h1 style="color: red;">Fehler</h1>'; echo  $e->getMessage();
        
-        echo '<a href="catalog.php" style="text-decoration:none">
+        echo '<a href="user.php" style="text-decoration:none">
         <button class="textstyle8">  Back</button>
         </a>';
     }
