@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
+use generatedclasses\ProductQuery;
+use generatedclasses\ProductCatalogyQuery;
 
 /*
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
@@ -32,7 +36,7 @@ if ($_SESSION['authenticated'] === true) {
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="logout.php">Logout</a></li>';
+        echo '<li><a href="../backend/logout.php">Logout</a></li>';
     }
     else 
     {
@@ -83,32 +87,43 @@ if ($_SESSION['authenticated'] === true) {
     </div>
   </form>
 <hr>
-<?php 
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
-use generatedclasses\ProductQuery;
-use generatedclasses\ProductCatalogyQuery;
+</div>
 
-$articleId = $_GET['id'];
-
-
-$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
-
-foreach ($PCId as $art) {
-    $productId = $art->getProductId();
-    $product = ProductQuery::create()->findPk($productId);
-    
-    if ($product !== null) {
-        echo "Id: ".$product->getId() . "<br>";
-        echo "Name: ".$product->getName() . "<br>";
-        echo "Preis: ".$product->getPrice(). "€ <br>" ;
-        echo "Breite: ".$product->getWidth(). "cm <br>" ;
-        echo "Höhe: ".$product->getHeigth(). "cm <br>" ;
-        echo "Beschreibung :". $product->getDescription(). "<br>" ;
-        echo "<hr>";
-    }
-}
-?>
+<div>
+	<?php 
+	include 'Blatt7/backend/loginandlogout.php';
+	// Überprüfen Sie, ob der Benutzer authentifiziert ist
+	
+	if (isLoggedIn()) {
+	    
+	    
+	    $articleId = $_GET['id'];
+	    
+	    
+	    $PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
+	    
+	    foreach ($PCId as $art) {
+	        $productId = $art->getProductId();
+	        $product = ProductQuery::create()->findPk($productId);
+	        
+	        if ($product !== null) {
+	            echo "Id: ".$product->getId() . "<br>";
+	            echo "Name: ".$product->getName() . "<br>";
+	            echo "Preis: ".$product->getPrice(). "€ <br>" ;
+	            echo "Breite: ".$product->getWidth(). "cm <br>" ;
+	            echo "Höhe: ".$product->getHeigth(). "cm <br>" ;
+	            echo "Beschreibung :". $product->getDescription(). "<br>" ;
+	            echo "<hr>";
+	        }
+	    }
+	   
+	}
+	else
+	{
+	    echo "Bitte einloggen". '<a href="user.php">Login</a>';
+	}
+	?>
+	
 
 </div>
 </body>

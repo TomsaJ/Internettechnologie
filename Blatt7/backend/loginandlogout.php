@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 use generatedclasses\UserQuery;
@@ -35,12 +36,18 @@ function isLoggedIn()
 
 function logout()
 {
-    if (session_status() == PHP_SESSION_ACTIVE) {
-        session_unset(); // Setzt alle Session-Variablen zurück
-        session_destroy(); // Zerstört die Sitzung
-        // Weitere Aktionen, wie Benutzer benachrichtigen oder Protokolle schreiben, können hier durchgeführt werden
-    }
+    
+    // Unset all of the session variables.
+    $_SESSION['username'] = false;
+    
+    // If it's desired to kill the session, also delete the session cookie.
+    // Note: This will destroy the session, and not just the session data!
+    session_unset();
+    
+    // Finally, destroy the session.
+    session_destroy();
 }
+
 
 // Überprüfen, ob der Benutzer versucht hat, sich abzumelden
 if (isset($_GET['logout'])) {

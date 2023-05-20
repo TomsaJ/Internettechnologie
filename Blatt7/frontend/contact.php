@@ -1,8 +1,5 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
-<?php
-// Start the session
-session_start();
-?>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -25,7 +22,7 @@ session_start();
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="logout.php">Logout</a></li>';
+        echo '<li><a href="../backend/logout.php">Logout</a></li>';
     }
     else 
     {

@@ -25,7 +25,7 @@ session_start();
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="frontend/logout.php">Logout</a></li>';
+        echo '<li><a href="backend/logout.php">Logout</a></li>';
     }
     else 
     {
@@ -39,6 +39,16 @@ session_start();
 <body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Startseite</h1>
+  <?php 
+  $status = session_status();
+  if ($status === PHP_SESSION_DISABLED) {
+      echo "Die Sitzungen sind deaktiviert.";
+  } elseif ($status === PHP_SESSION_NONE) {
+      echo "Es wurde keine Sitzung gestartet.";
+  } elseif ($status === PHP_SESSION_ACTIVE) {
+      echo "Die Sitzung ist aktiv.";
+  }
+  ?>
 </body>
 <footer class = "foot">
   <div class="container">
