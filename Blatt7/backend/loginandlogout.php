@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 use generatedclasses\UserQuery;
@@ -25,13 +24,22 @@ function login($username, $password)
 
 function isLoggedIn()
 {
-    return isset($_SESSION['username']);
+    if(session_status() == PHP_SESSION_ACTIVE)
+    {
+        return true;
+    }else {
+        return false;
+    }
+    
 }
 
 function logout()
 {
-    session_unset();
-    session_destroy();
+    if (session_status() == PHP_SESSION_ACTIVE) {
+        session_unset(); // Setzt alle Session-Variablen zurück
+        session_destroy(); // Zerstört die Sitzung
+        // Weitere Aktionen, wie Benutzer benachrichtigen oder Protokolle schreiben, können hier durchgeführt werden
+    }
 }
 
 // Überprüfen, ob der Benutzer versucht hat, sich abzumelden
@@ -41,15 +49,3 @@ if (isset($_GET['logout'])) {
     exit();
 }
 ?>
-
-<!-- Navigationsleiste -->
-<nav>
-    <ul>
-        <li><a href="index.php">Startseite</a></li>
-        <?php if (isLoggedIn()): ?>
-            <li><a href="?logout">Ausloggen</a></li>
-        <?php else: ?>
-            <li><a href="login.php">Einloggen</a></li>
-        <?php endif; ?>
-    </ul>
-</nav>

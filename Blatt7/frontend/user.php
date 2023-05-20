@@ -1,6 +1,7 @@
 
 
 <?php 
+session_start();
   if (isset($_GET['message'])) {
       $message = $_GET['message'];
   }
@@ -25,7 +26,7 @@
       </li>
     <li><a href="contact.php">Contact us</a></li>
     <?php 
-    include '../bachend/loginandlogout.php';
+    include '../backend/loginandlogout.php';
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an

@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
 if ($_SESSION['authenticated'] === true) {
@@ -17,15 +18,28 @@ if ($_SESSION['authenticated'] === true) {
 <header>
 <nav>
   <ul>
-    <li><a href="../frontend/index.php">Startseite</a></li>
-    <li><a href="../frontend/user.php">Login</a></li>
-    <li><a href="../frontend/catalog.php">Categories</a>
+    <li><a href="../index.php">Startseite</a></li>
+    <li><a href="user.php">Login</a></li>
+    <li><a href="catalog.php">Categories</a>
       <menu>
-        <li><a href="../frontend/product.php">Product </a></li>
-        <li><a href="../frontend/productdetails.php"> Product Details</a></li>
+        <li><a href="product.php">Product </a></li>
+        <li><a href="productdetails.php"> Product Details</a></li>
       </menu>
       </li>
-    <li><a href="../frontend/contact.php">Contact us</a></li>
+    <li><a href="contact.php">Contact us</a></li>
+    <?php 
+    include '../backend/loginandlogout.php';
+// Überprüfen Sie, ob der Benutzer authentifiziert ist
+    if (isLoggedIn()) {
+    // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
+        echo '<li><a href="logout.php">logout</a></li>';
+    }
+    else 
+    {
+        echo '<li><a href="user.php">login</a></li>';
+    }
+    ?>
+	
   </ul>
   </nav>
 </header>

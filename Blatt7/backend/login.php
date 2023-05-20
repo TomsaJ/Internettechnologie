@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else
     {
-        $message = "Falsches Passwort";
+        $message = "Falsche User oder Falsches Passwort";
     }
     
     // Umleitung auf die vorherige Seite mit dem übergebenen Wert
