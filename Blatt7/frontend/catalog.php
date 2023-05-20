@@ -13,13 +13,12 @@ if ($_SESSION['authenticated'] === true) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datenbanken Eintrag</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../backend/style.css">
 </head>
 <header>
 <nav>
   <ul>
     <li><a href="../index.php">Startseite</a></li>
-    <li><a href="user.php">Login</a></li>
     <li><a href="catalog.php">Categories</a>
       <menu>
         <li><a href="product.php">Product </a></li>
@@ -32,11 +31,11 @@ if ($_SESSION['authenticated'] === true) {
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="logout.php">logout</a></li>';
+        echo '<li><a href="logout.php">Logout</a></li>';
     }
     else 
     {
-        echo '<li><a href="user.php">login</a></li>';
+        echo '<li><a href="user.php">Login</a></li>';
     }
     ?>
 	

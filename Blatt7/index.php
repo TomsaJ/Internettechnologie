@@ -7,34 +7,33 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <title>Datenbanken Eintrag</title>
-  <link rel="stylesheet" type="text/css" href="/Blatt7/frontend/style.css">
+  <link rel="stylesheet" type="text/css" href="backend/style.css">
 </head>
 <header>
 <nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
-    <li><a href="/Blatt7/frontend/user.php">Login</a></li>
-    <li><a href="/Blatt7/frontend/catalog.php">Categories</a>
+    <li><a href="frontend/catalog.php">Categories</a>
       <menu>
-        <li><a href="/Blatt7/frontend/product.php">Product </a></li>
-        <li><a href="/Blatt7/frontend/productdetails.php"> Product Details</a></li>
+        <li><a href="frontend/product.php">Product </a></li>
+        <li><a href="frontend/productdetails.php"> Product Details</a></li>
       </menu>
       </li>
-    <li><a href="/Blatt7/frontend/contact.php">Contact us</a></li>
-  
-  <?php 
+    <li><a href="frontend/contact.php">Contact us</a></li>
+    <?php 
     include 'backend/loginandlogout.php';
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="backend/logout.php">logout</a></li>';
+        echo '<li><a href="frontend/logout.php">Logout</a></li>';
     }
     else 
     {
-        echo '<li><a href="frontend/user.php">login</a></li>';
+        echo '<li><a href="frontend/user.php">Login</a></li>';
     }
     ?>
-    </ul>
+	
+  </ul>
   </nav>
 </header>
 <body>
