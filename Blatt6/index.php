@@ -9,21 +9,20 @@
 <nav>
   <ul>
     <li><a href="index.php">Startseite</a></li>
-    <li><a href="user.php">Login</a></li>
-    <li><a href="catalog.php">Categories</a>
+    <li><a href="/Blatt6/frontend/user.php">Login</a></li>
+    <li><a href="/Blatt6/frontend/frontend/catalog.php">Categories</a>
       <menu>
-        <li><a href="product.php">Product </a></li>
-        <li><a href="productdetails.php"> Product Details</a></li>
+        <li><a href="/Blatt6/frontend/frontend/product.php">Product </a></li>
+        <li><a href="/Blatt6/frontend/frontend/productdetails.php"> Product Details</a></li>
       </menu>
       </li>
-    <li><a href="contact.php">Contact us</a></li>
+    <li><a href="/Blatt6/frontend/frontend/contact.php">Contact us</a></li>
   </ul>
   </nav>
 </header>
 <body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Startseite</h1>
-  <a href="InsertProduct2.php"> Test1</a>
 </body>
 <footer class = "foot">
   <div class="container">
