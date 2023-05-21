@@ -93,7 +93,7 @@ foreach ($articles as $article) {
     echo '<tr>';
     echo '<td><a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a></td>';
     echo '<td>' . $article->getDescription() . '</td>';
-    echo '<td><a href="../frontend/confirmationpage.php?cid=7&id=' . $article->getId() . '">Update</a></td>';
+    echo '<td><a href="../frontend/update.php?cid=2&id=' . $article->getId() . '">Update</a></td>';
     echo '<td><a href="../frontend/confirmationpage.php?cid=7&id=' . $article->getId() . '">Delete</a></td>';
     echo '</tr>';
 }

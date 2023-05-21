@@ -1,18 +1,10 @@
 <?php
-session_start();
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
+
+use generatedclasses\CategoryQuery;
 use generatedclasses\ProductQuery;
-use generatedclasses\ProductCatalogyQuery;
 
-/*
-// Überprüfen Sie, ob der Benutzer authentifiziert ist
-if ($_SESSION['authenticated'] === true) {
-    // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-    echo '<a href="neues_objekt_erstellen.php" class="btn btn-primary">Neues Objekt anlegen</a>';
-}*/
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -36,7 +28,7 @@ if ($_SESSION['authenticated'] === true) {
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="../backend/logout.php">Logout</a></li>';
+        echo '<li><a href="logout.php">Logout</a></li>';
     }
     else 
     {
@@ -47,18 +39,19 @@ if ($_SESSION['authenticated'] === true) {
   </ul>
   </nav>
 </header>
-<body >
+<body>
   <!-- Formular für die Tabelle "user" -->
-  <h1>Product</h1>
-  <?php if (isLoggedIn()) {
-	    
-	    
-	  
-	    ?>
-  <!-- Formular für die Tabelle "user" -->
-  <div class="form-container">
-<hr>
-  <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
+  <h1>Updatepage</h1>
+  <?php 
+    $articleId = $_GET['cid'];
+    $artId = $_GET['id'];
+    
+    if ($articleId==1)
+    {
+        
+    ?>
+        <!-- Inhalt der ersten Spalte -->
+    <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
     <div class="form-group">
   <label for="id">Category ID:</label>
   <select id="cat_id" name="cat_id" accesskey="i" required>
@@ -81,7 +74,6 @@ if ($_SESSION['authenticated'] === true) {
     ?>
   </select>
 </div>
-
     <div class="form-group">
       <label for="id">Product ID:</label>
       <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
@@ -109,77 +101,58 @@ if ($_SESSION['authenticated'] === true) {
     <div class="form-group">
       <input type="submit" value="Absenden" accesskey="s">
     </div>
-  </form>
-<hr>
-</div>
-<?php } else {
-    echo "Zum hinzufügen von Producten bitte anmelden";
-    echo '<hr>';
-}?>
-
-<div>
-	<?php 
-	include 'Blatt7/backend/loginandlogout.php';
-	// Überprüfen Sie, ob der Benutzer authentifiziert ist
+    
+    <h3> Alte Daten: </h3>
+    
+        <?php 
+        
+        $update = ProductQuery::create()->findOneById($artId);
+        // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
+        echo "Product-ID: " . $update->getId() . "<br>";
+        echo "Product-Name: " . $update->getName() . "<br>";
+        echo "Price: ".$update->getPrice()."<br>";
+        echo "Width: ".$update->getWidth()."<br>";
+        echo "Heigth: ".$update->getHeigth()."<br>";
+        echo "Description: ".$update->getDescription()."<br>";
+        
+        ?>
+        </form>
+    <?php 
+    }
+    
+    if ($articleId==2)
+    {
+    ?>
+     <form action="confirmationpage.php?cid=2" method="POST" name="userForm" class="form" >
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" accesskey="i" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" accesskey="n" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Beschreibung:</label>
+      <textarea id="description" name="description" accesskey="d"  maxlength="255" required></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Absenden" accesskey="s">
+    </div>
+	<h3> Alte Daten: </h3>
 	
-	$articleId = $_GET['id'];
-	
-	$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
-	
-	    
-	
-	
-	echo "<table style='width: 100%; max-width: 100%;'>";
-	echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th>";
-	if (isLoggedIn()) {
-	    
-	    // Durchlaufen der Zeilen und Ausgabe der Daten
-	    echo "<th>Update</th><th>Delete</th></tr>";
-	    foreach ($PCId as $art) {
-	        $productId = $art->getProductId();
-	        $product = ProductQuery::create()->findPk($productId);
-	        
-	        if ($product !== null) {
-	            echo "<tr>";
-	            echo "<td>".$product->getId()."</td>";
-	            echo "<td>".$product->getName()."</td>";
-	            echo "<td>".$product->getPrice()."€</td>";
-	            echo "<td>".$product->getWidth()."cm</td>";
-	            echo "<td>".$product->getHeigth()."cm</td>";
-	            echo "<td>".$product->getDescription()."</td>";
-	            echo '<td><a href="../frontend/update.php?cid=1&id=' . $product->getId() . '">Update</a></td>';
-	            echo '<td><a href="../frontend/confirmationpage.php?cid=8&id=' . $product->getId() . '">Delete</a></td>';
-	            echo '</tr>';
-	        }
-	    }
-	        
-	   }
-	    
-	else
-	{
-	    echo "</tr>";
-	    foreach ($PCId as $art) {
-	        $productId = $art->getProductId();
-	        $product = ProductQuery::create()->findPk($productId);
-	        
-	        if ($product !== null) {
-	            echo "<tr>";
-	            echo "<td>".$product->getId()."</td>";
-	            echo "<td>".$product->getName()."</td>";
-	            echo "<td>".$product->getPrice()."€</td>";
-	            echo "<td>".$product->getWidth()."cm</td>";
-	            echo "<td>".$product->getHeigth()."cm</td>";
-	            echo "<td>".$product->getDescription()."</td>";
-	            echo "</tr>";
-	        }
-	    }
-	}
-	echo '</table>';
-?>
-
-	
-
-</div>
+        <?php 
+        $update= CategoryQuery::create()->findOneById($artId);
+        // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
+        echo "Kategorie-ID: " . $update->getId() . "<br>";
+        echo "Kategorie-Name: " . $update->getName() . "<br>";
+        // Weitere Eigenschaften oder Methoden entsprechend der Kategorieklasse verwenden
+        
+        ?>
+         </form>
+    <?php 
+    }
+    ?>
 </body>
 <footer class = "foot">
   <div class="container">
@@ -193,4 +166,6 @@ if ($_SESSION['authenticated'] === true) {
     </div>
   </div>
 </footer>
-</html> 
+
+</html>
+    
