@@ -84,11 +84,12 @@ session_start();
   </form>
   <hr>
 </div>
-<script>
-        setTimeout(function() {
-            document.getElementById("message").style.display = "none";
-        }, 3000);
-    </script>
+<?php if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+    echo '<meta http-equiv="refresh" content="3; ../frontend/user.php">';
+}?>
+
 </body>
 <footer class = "foot">
   <div class="container">

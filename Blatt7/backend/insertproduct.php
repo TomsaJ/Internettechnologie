@@ -1,6 +1,6 @@
 <?php
 
-
+session_start(); 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 
@@ -36,19 +36,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Speichern Sie das Produkt in der Datenbank
     try {
         // Die Kategorie in die Datenbank einfügen
-        
         $product->save();
         $category->save();
+        
         // Erfolgreiche Nachricht anzeigen
-        echo '<meta http-equiv="refresh" content="3; product.php">';
-        echo '<h1>User wurde erfolgreich hinzugefügt</h1>';
+        $message = "Hinzugefügt";
+        $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     } catch (Exception $e) {
         // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
-        echo "Fehler beim Hinzufügen der Kategorie: " . $e->getMessage();
-        echo '<a href="catalog.php" style="text-decoration:none">
-        <button class="textstyle8">  Back</button>
-        </a>';
+        $message = "Nicht hinzugefügt. ID vorhanden";
+        $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
+    
 }
     
     // Erfolgsmeldung ausgeben

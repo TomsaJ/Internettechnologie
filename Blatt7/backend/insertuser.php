@@ -2,7 +2,7 @@
 <html>
 
 <?php
-
+session_start();
 // setup the autoloading
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
@@ -35,19 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user->save();
         
         // Erfolgreiche Nachricht anzeigen
-        echo '<meta http-equiv="refresh" content="3; ../frontend/user.php">';
-        echo '<h1>User wurde erfolgreich hinzugefügt</h1>';
-        echo "User: " . $username . "<br />";
-        echo "Password: " . $password . "<br />";
-        echo "HashPassword: " . $hashedPassword . "<br />";
-        echo "Salt:" .$salt;
+        $message = "Hinzugefügt";
+        $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     } catch (Exception $e) {
         // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
-        echo '<h1 style="color: red;">' . $e->getMessage(). '</h1>';
-        echo $user;
-        echo '<a href="user.php" style="text-decoration:none">
-        <button class="textstyle8">Back</button>
-    </a>';
+        $message = "Nicht hinzugefügt. User vorhanden";
+        $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
 }
 

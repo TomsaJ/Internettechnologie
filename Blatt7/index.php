@@ -1,6 +1,8 @@
 <?php
-// Start the session
 session_start();
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -40,15 +42,16 @@ session_start();
   <!-- Formular für die Tabelle "user" -->
   <h1>Startseite</h1>
   <?php 
-  $status = session_status();
-  if ($status === PHP_SESSION_DISABLED) {
-      echo "Die Sitzungen sind deaktiviert.";
-  } elseif ($status === PHP_SESSION_NONE) {
-      echo "Es wurde keine Sitzung gestartet.";
-  } elseif ($status === PHP_SESSION_ACTIVE) {
+  include '../backend/loginandlogout.php';
+  if (isLoggedIn()) {
       echo "Die Sitzung ist aktiv.";
+  } else{
+      echo "Die Sitzung ist deaktiv.";
   }
+  
+  
   ?>
+  <div id="message"><?php echo $message; ?></div>
 </body>
 <footer class = "foot">
   <div class="container">

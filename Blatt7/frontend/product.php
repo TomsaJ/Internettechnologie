@@ -47,17 +47,41 @@ if ($_SESSION['authenticated'] === true) {
   </ul>
   </nav>
 </header>
-<body>
+<body >
   <!-- Formular für die Tabelle "user" -->
   <h1>Product</h1>
+  <?php if (isLoggedIn()) {
+	    
+	    
+	  
+	    ?>
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
-  <form action="../backendend/insertproduct.php" method="POST" name="userForm" class="form">
+  <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
     <div class="form-group">
-      <label for="id">Category ID:</label>
-      <input type="number" id="cat_id" name="cat_id" accesskey="i" required>
-    </div>
+  <label for="id">Category ID:</label>
+  <select id="cat_id" name="cat_id" accesskey="i" required>
+    <option value="">Select a category</option>
+    <?php
+    // Verbindung zur Datenbank herstellen
+    $con = Propel\Runtime\Propel::getConnection();
+
+    // Datenbankabfrage durchführen
+    $query = 'SELECT id, name FROM category';
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+
+    // Ergebnisse in das Formular einfügen
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $categoryId = $row['id'];
+        $categoryName = $row['name'];
+        echo "<option value='$categoryId'>$categoryName</option>";
+    }
+    ?>
+  </select>
+</div>
+
     <div class="form-group">
       <label for="id">Product ID:</label>
       <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
@@ -88,41 +112,43 @@ if ($_SESSION['authenticated'] === true) {
   </form>
 <hr>
 </div>
+<?php } else {
+    echo "Zum hinzufügen von Producten bitte anmelden";
+    echo '<hr>';
+}?>
 
 <div>
 	<?php 
 	include 'Blatt7/backend/loginandlogout.php';
 	// Überprüfen Sie, ob der Benutzer authentifiziert ist
 	
-	if (isLoggedIn()) {
+	$articleId = $_GET['id'];
+	
+	$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
+	
 	    
+	echo "<table style='width: 100%; max-width: 100%;'>";
+	echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th></tr>";
 	    
-	    $articleId = $_GET['id'];
-	    
-	    
-	    $PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
-	    
-	    foreach ($PCId as $art) {
-	        $productId = $art->getProductId();
-	        $product = ProductQuery::create()->findPk($productId);
+	foreach ($PCId as $art) {
+	    $productId = $art->getProductId();
+	    $product = ProductQuery::create()->findPk($productId);
 	        
-	        if ($product !== null) {
-	            echo "Id: ".$product->getId() . "<br>";
-	            echo "Name: ".$product->getName() . "<br>";
-	            echo "Preis: ".$product->getPrice(). "€ <br>" ;
-	            echo "Breite: ".$product->getWidth(). "cm <br>" ;
-	            echo "Höhe: ".$product->getHeigth(). "cm <br>" ;
-	            echo "Beschreibung :". $product->getDescription(). "<br>" ;
-	            echo "<hr>";
-	        }
+	    if ($product !== null) {
+	        echo "<tr>";
+	        echo "<td>".$product->getId()."</td>";
+	        echo "<td>".$product->getName()."</td>";
+	        echo "<td>".$product->getPrice()."€</td>";
+	        echo "<td>".$product->getWidth()."cm</td>";
+	        echo "<td>".$product->getHeigth()."cm</td>";
+	        echo "<td>".$product->getDescription()."</td>";
+	        echo "</tr>";
 	    }
-	   
 	}
-	else
-	{
-	    echo "Bitte einloggen". '<a href="user.php">Login</a>';
-	}
-	?>
+	
+	echo "</table>";
+?>
+
 	
 
 </div>

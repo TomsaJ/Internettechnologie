@@ -44,11 +44,16 @@ if ($_SESSION['authenticated'] === true) {
 </header>
 <body>
   <!-- Formular für die Tabelle "user" -->
-  <h1>Catalogie</h1>
+  <h1>Category</h1>
+  <?php if (isLoggedIn()) {
+	    
+	    
+	  
+	    ?>
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
-  <form action="../backend/insertcategory.php" method="POST" name="userForm" class="form">
+  <form action="confirmationpage.php?cid=2" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" id="id" name="id" accesskey="i" required>
@@ -66,6 +71,10 @@ if ($_SESSION['authenticated'] === true) {
     </div>
   </form>
   <hr>
+  <?php } else {
+    echo "Zum hinzufügen von Categories bitte anmelden";
+    echo '<hr>';
+}?>
 </div>
 <?php 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -74,13 +83,33 @@ use generatedclasses\CategoryQuery;
 
 $articles = CategoryQuery::create()->find();
 
-
+echo "<table style='width: 100%; max-width: 100%;'>";
+echo "<tr><th>Categoriy</th><th>Description</th>";
+if (isLoggedIn()) {
 
 // Durchlaufen der Zeilen und Ausgabe der Daten
+echo "<th>Update</th><th>Delete</th></tr>";
 foreach ($articles as $article) {
-    echo '<a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a><br>';
-    echo "<hr>";
+    echo '<tr>';
+    echo '<td><a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a></td>';
+    echo '<td>' . $article->getDescription() . '</td>';
+    echo '<td><a href="../frontend/confirmationpage.php?cid=7&id=' . $article->getId() . '">Update</a></td>';
+    echo '<td><a href="../frontend/confirmationpage.php?cid=7&id=' . $article->getId() . '">Delete</a></td>';
+    echo '</tr>';
 }
+
+}
+else 
+{
+    echo "</tr>";
+    foreach ($articles as $article) {
+        echo '<tr>';
+        echo '<td><a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a></td>';
+        echo '<td>' . $article->getDescription() . '</td>';
+        echo '</tr>';
+    }
+}
+echo '</table>';
 
 ?>
 </body>
