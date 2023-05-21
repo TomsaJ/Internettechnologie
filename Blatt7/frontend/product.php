@@ -127,26 +127,54 @@ if ($_SESSION['authenticated'] === true) {
 	$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
 	
 	    
+	
+	
 	echo "<table style='width: 100%; max-width: 100%;'>";
-	echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th></tr>";
+	echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th>";
+	if (isLoggedIn()) {
 	    
-	foreach ($PCId as $art) {
-	    $productId = $art->getProductId();
-	    $product = ProductQuery::create()->findPk($productId);
+	    // Durchlaufen der Zeilen und Ausgabe der Daten
+	    echo "<th>Update</th><th>Delete</th></tr>";
+	    foreach ($PCId as $art) {
+	        $productId = $art->getProductId();
+	        $product = ProductQuery::create()->findPk($productId);
 	        
-	    if ($product !== null) {
-	        echo "<tr>";
-	        echo "<td>".$product->getId()."</td>";
-	        echo "<td>".$product->getName()."</td>";
-	        echo "<td>".$product->getPrice()."€</td>";
-	        echo "<td>".$product->getWidth()."cm</td>";
-	        echo "<td>".$product->getHeigth()."cm</td>";
-	        echo "<td>".$product->getDescription()."</td>";
-	        echo "</tr>";
+	        if ($product !== null) {
+	            echo "<tr>";
+	            echo "<td>".$product->getId()."</td>";
+	            echo "<td>".$product->getName()."</td>";
+	            echo "<td>".$product->getPrice()."€</td>";
+	            echo "<td>".$product->getWidth()."cm</td>";
+	            echo "<td>".$product->getHeigth()."cm</td>";
+	            echo "<td>".$product->getDescription()."</td>";
+	            echo '<td><a href="../frontend/confirmationpage.php?cid=8&id=' . $product->getId() . '">Update</a></td>';
+	            echo '<td><a href="../frontend/confirmationpage.php?cid=8&id=' . $product->getId() . '">Delete</a></td>';
+	            echo '</tr>';
+	        }
+	    }
+	        
+	   }
+	    
+	else
+	{
+	    echo "</tr>";
+	    foreach ($PCId as $art) {
+	        $productId = $art->getProductId();
+	        $product = ProductQuery::create()->findPk($productId);
+	        
+	        if ($product !== null) {
+	            echo "<tr>";
+	            echo "<td>".$product->getId()."</td>";
+	            echo "<td>".$product->getName()."</td>";
+	            echo "<td>".$product->getPrice()."€</td>";
+	            echo "<td>".$product->getWidth()."cm</td>";
+	            echo "<td>".$product->getHeigth()."cm</td>";
+	            echo "<td>".$product->getDescription()."</td>";
+	            echo "</tr>";
+	        }
 	    }
 	}
-	
-	echo "</table>";
+	echo '</table>';
 ?>
 
 	

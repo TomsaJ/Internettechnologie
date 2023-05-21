@@ -1,5 +1,6 @@
 <?php
 use generatedclasses\CategoryQuery;
+use generatedclasses\ProductQuery;
 
 session_start();
 
@@ -105,6 +106,7 @@ session_start();
        <?php   
      }
   }
+  else{
   if ($articleId==7)
   {
       
@@ -120,7 +122,26 @@ session_start();
     </form>
 
       <?php 
-  }
+  }elseif ($articleId==8)
+  {
+      
+      $del = ProductQuery::create()->findOneById($artId);
+      // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
+      echo "Product-ID: " . $del->getId() . "<br>";
+      echo "Product-Name: " . $del->getName() . "<br>";
+      echo "Price: ".$del->getPrice()."<br>";
+      echo "Width: ".$del->getWidth()."<br>";
+      echo "Heigth: ".$del->getHeigth()."<br>";
+      echo "Description: ".$del->getDescription()."<br>";
+      // Weitere Eigenschaften oder Methoden entsprechend der Kategorieklasse verwenden
+      
+      ?>
+      <form action="../backend/delete.php?cid=2?id=<?php echo $artId?>" method="POST">
+      <input type="submit" value="Weiter">
+    </form>
+
+      <?php 
+  }}
      ?>
 <?php if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];
@@ -132,8 +153,8 @@ session_start();
     elseif($articleId==2)
     {
         echo '<meta http-equiv="refresh" content="3; ../frontend/catalog.php">';
-    }
-}?>
+    }}
+?>
       
 </body>
 <footer class = "foot">
