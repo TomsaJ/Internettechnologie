@@ -47,6 +47,7 @@ session_start();
   
   $articleId = $_GET['cid'];
   $artId = $_GET['id'];
+  $uid = $_GET['oid'];
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   if ($articleId==1)
@@ -105,6 +106,26 @@ session_start();
          
        <?php   
      }
+     if($articleId==4)
+    {
+      $id = $_POST['id'];
+      $name = $_POST['name'];
+      $description = $_POST['description'];
+      
+      echo "CategoryID: " .$id . "<br />";
+      echo "Category: " .$name. "<br />";
+      echo "Description: " .$description. "<br />";
+      
+      ?>
+<form action="../backend/update.php?cid=1&oid=<?php echo $uid; ?>" method="POST">
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+    <input type="hidden" name="name" value="<?php echo $name; ?>">
+    <input type="hidden" name="description" value="<?php echo $description; ?>">
+    <input type="submit" value="Weiter">
+</form>
+
+         
+       <?php   
   }
   else{
   if ($articleId==7)
@@ -142,6 +163,7 @@ session_start();
 
       <?php 
   }}
+  }
      ?>
 <?php if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];

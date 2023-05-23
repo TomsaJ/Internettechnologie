@@ -84,13 +84,14 @@ use generatedclasses\CategoryQuery;
 $articles = CategoryQuery::create()->find();
 
 echo "<table style='width: 100%; max-width: 100%;'>";
-echo "<tr><th>Categoriy</th><th>Description</th>";
+echo "<tr><th>Id</th><th>Categoriy</th><th>Description</th>";
 if (isLoggedIn()) {
 
 // Durchlaufen der Zeilen und Ausgabe der Daten
 echo "<th>Update</th><th>Delete</th></tr>";
 foreach ($articles as $article) {
     echo '<tr>';
+    echo '<td>' . $article->getId() . '</td>';
     echo '<td><a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a></td>';
     echo '<td>' . $article->getDescription() . '</td>';
     echo '<td><a href="../frontend/update.php?cid=2&id=' . $article->getId() . '">Update</a></td>';
@@ -104,6 +105,7 @@ else
     echo "</tr>";
     foreach ($articles as $article) {
         echo '<tr>';
+        echo '<td>' . $article->getId() . '</td>';
         echo '<td><a href="../frontend/product.php?id=' . $article->getId() . '">' . $article->getName() . '</a></td>';
         echo '<td>' . $article->getDescription() . '</td>';
         echo '</tr>';

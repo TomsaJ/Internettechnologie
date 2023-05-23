@@ -46,6 +46,7 @@ session_start();
     $articleId = $_GET['cid'];
     $artId = $_GET['id'];
     
+    
     if ($articleId==1)
     {
         
@@ -123,7 +124,7 @@ session_start();
     if ($articleId==2)
     {
     ?>
-     <form action="confirmationpage.php?cid=2" method="POST" name="userForm" class="form" >
+    <form action="confirmationpage.php?cid=4&oid=<?php echo $artId; ?>" method="POST" name="userForm" class="form">
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" id="id" name="id" accesskey="i" required>
