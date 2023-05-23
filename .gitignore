@@ -16,11 +16,8 @@ TEST-*.xml
 junit*.properties
 /.metadata/
 *.pdf
-.SynologyWorkingDirectory/7BWJH8
-Icon
+.SynologyWorkingDirectory/*
 *.plist
-Icon
-Icon
 *.ini
 Eclipse.app*
 */Propel2-master/
