@@ -9,7 +9,7 @@ use generatedclasses\ProductCatalogy;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Daten aus dem Formular abrufen
-    $cat_id = $_POST['cat_id'];
+    //$cat_id = $_POST['cat_id'];
     $pro_id = $_POST['pro_id'];
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -27,9 +27,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product->setDescription($description);
     
     
-    $category = new ProductCatalogy();
-    $category->setCategoryId($cat_id);
-    $category->setProductId($pro_id);
+    if (isset($_POST['item'])) {
+        $selectedCategories = $_POST['item'];
+        
+            try {
+                foreach ($selectedCategories as $item) {
+                    $category = new ProductCatalogy(); // Korrigierter Klassenname
+                    $category->setCategoryId($item);
+                    $category->setProductId($pro_id);
+                // Die Kategorie in die Datenbank einfügen
+                    $category->save();
+                }
+            } catch (Exception $e) {
+                // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
+                $message = "Category konnte nicht erstellt werden";
+                $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+                header("Location: {$_SERVER['HTTP_REFERER']}");
+                exit();
+            }
+        
+        // Löschen des Session-Arrays
+        unset($_SESSION['selected_categories']);
+    }
+    
     
     
     
@@ -37,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Die Kategorie in die Datenbank einfügen
         $product->save();
-        $category->save();
         
         // Erfolgreiche Nachricht anzeigen
         $message = "Hinzugefügt";

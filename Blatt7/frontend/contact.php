@@ -36,10 +36,16 @@
 <body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Contact us</h1>
+   <h4>Anfahrt</h4>
+  <img src="../backend/contactus.jpg" alt="Beispielbild" width="300" height="200">
    <h4>Kontaktieren Sie uns</h4>
         <p>123 Beispielstraße, Beispielstadt</p>
         <p>Telefon: 123-456-7890</p>
         <p>E-Mail: info@example.com</p>
+        
+        
+        
+        <hr>
 </body>
 <footer class = "foot">
   <div class="container">

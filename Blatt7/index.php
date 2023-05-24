@@ -46,12 +46,13 @@ if (isset($_GET['message'])) {
   if (isLoggedIn()) {
       echo "Die Sitzung ist aktiv.";
   } else{
-      echo "Die Sitzung ist deaktiv.";
+      echo "Die Sitzung ist nicht aktiv.";
   }
   
   
   ?>
   <div id="message"><?php echo $message; ?></div>
+  <hr>
 </body>
 <footer class = "foot">
   <div class="container">

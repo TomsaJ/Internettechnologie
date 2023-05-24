@@ -44,7 +44,6 @@ session_start();
   <!-- Formular für die Tabelle "user" -->
   <h1>Bestätige:</h1>
   <?php 
-  
   $articleId = $_GET['cid'];
   $artId = $_GET['id'];
   $uid = $_GET['oid'];
@@ -52,37 +51,50 @@ session_start();
   
   if ($articleId==1)
   {
-      
-  
-      // Daten aus dem Formular abruf
-      $pro_id = $_POST['pro_id'];
-      $name = $_POST['name'];
-      $price = $_POST['price'];
-      $width = $_POST['width'];
-      $height = $_POST['height'];
-      $description = $_POST['description'];
-      
-      
-      echo "ProductID: " .$pro_id. "<br />";
-      echo "Product: " .$name. "<br />";
-      echo "Price: " .$price. "<br />";
-      echo "Width:" .$width. "<br />";
-      echo "Height:" .$height. "<br />";
-      echo "Description:" .$description. "<br />";
-      
-      
+      echo "CategoryId: ";
+      if (isset($_POST['item'])) {
+          $selectedCategories = $_POST['item'];
+          foreach ($selectedCategories as $item) {
+              echo $item . ",";
+          }
+          echo "<br />";
+          // Daten aus dem Formular abrufen
+          $pro_id = $_POST['pro_id'];
+          $name = $_POST['name'];
+          $price = $_POST['price'];
+          $width = $_POST['width'];
+          $height = $_POST['height'];
+          $description = $_POST['description'];
+          
+          // Ausgabe der Daten
+          echo "ProductID: " . $pro_id . "<br />";
+          echo "Product: " . $name . "<br />";
+          echo "Price: " . $price . "<br />";
+          echo "Width: " . $width . "<br />";
+          echo "Height: " . $height . "<br />";
+          echo "Description: " . $description . "<br />";
+      }
       ?>
       
       
+      
       <form action="../backend/insertproduct.php" method="POST">
-      <input type="hidden" name="pro_id" value="<?php echo $pro_id; ?>">
-      <input type="hidden" name="name" value="<?php echo $name; ?>">
-      <input type="hidden" name="price" value="<?php echo $price; ?>">
-      <input type="hidden" name="width" value="<?php echo $width; ?>">
-      <input type="hidden" name="height" value="<?php echo $height; ?>">
-      <input type="hidden" name="description" value="<?php echo $description; ?>">
-      <input type="submit" value="Weiter">
-      </form>
+    <?php
+    // Versteckte Eingabefelder für die Daten aus dem ersten Teil
+    if (isset($_POST['item'])) {
+        foreach ($selectedCategories as $item) {
+            echo '<input type="hidden" name="item[]" value="' . $item . '">';
+        }
+    }
+    ?>
+    <input type="hidden" name="pro_id" value="<?php echo $pro_id; ?>">
+    <input type="hidden" name="name" value="<?php echo $name; ?>">
+    <input type="hidden" name="price" value="<?php echo $price; ?>">
+    <input type="hidden" name="width" value="<?php echo $width; ?>">
+    <input type="hidden" name="height" value="<?php echo $height; ?>">
+    <input type="hidden" name="description" value="<?php echo $description; ?>">
+    <input type="submit" value="Weiter">
+</form>
       
      <?php 
      } 
@@ -91,6 +103,8 @@ session_start();
          $id = $_POST['id'];
          $name = $_POST['name'];
          $description = $_POST['description'];
+         
+         
          
          echo "CategoryID: " .$id . "<br />";
          echo "Category: " .$name. "<br />";
@@ -126,9 +140,8 @@ session_start();
 
          
        <?php   
-  }
-  else{
-  if ($articleId==7)
+    }}else{
+    if ($articleId==7)
   {
       
       $del = CategoryQuery::create()->findOneById($artId);
@@ -162,12 +175,13 @@ session_start();
     </form>
 
       <?php 
-  }}
+  }
   }
      ?>
 <?php if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];
     unset($_SESSION['message']);
+    
     if ($articleId==1)
     {
     echo '<meta http-equiv="refresh" content="3; ../frontend/product.php">';
@@ -177,8 +191,9 @@ session_start();
         echo '<meta http-equiv="refresh" content="3; ../frontend/catalog.php">';
     }}
 ?>
-      
+      <hr>
 </body>
+
 <footer class = "foot">
   <div class="container">
     <div class="row">

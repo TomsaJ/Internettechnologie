@@ -89,7 +89,7 @@ session_start();
     unset($_SESSION['message']);
     echo '<meta http-equiv="refresh" content="3; ../frontend/user.php">';
 }?>
-
+<hr>
 </body>
 <footer class = "foot">
   <div class="container">

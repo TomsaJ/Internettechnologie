@@ -114,6 +114,7 @@ else
 echo '</table>';
 
 ?>
+<hr>
 </body>
 <footer class = "foot">
   <div class="container">

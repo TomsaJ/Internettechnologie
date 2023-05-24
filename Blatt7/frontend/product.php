@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 use generatedclasses\ProductQuery;
 use generatedclasses\ProductCatalogyQuery;
+use generatedclasses\CategoryQuery;
 
 /*
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
@@ -61,25 +62,31 @@ if ($_SESSION['authenticated'] === true) {
   <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
     <div class="form-group">
   <label for="id">Category ID:</label>
-  <select id="cat_id" name="cat_id" accesskey="i" required>
-    <option value="">Select a category</option>
+  <br />
     <?php
-    // Verbindung zur Datenbank herstellen
-    $con = Propel\Runtime\Propel::getConnection();
-
-    // Datenbankabfrage durchführen
-    $query = 'SELECT id, name FROM category';
-    $stmt = $con->prepare($query);
-    $stmt->execute();
-
-    // Ergebnisse in das Formular einfügen
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $categoryId = $row['id'];
-        $categoryName = $row['name'];
-        echo "<option value='$categoryId'> $categoryId - $categoryName</option>";
+    
+    $counter = 0;
+    $category = CategoryQuery::create()->find();
+    
+    foreach ($category as $item) {
+        echo "<label class=\"item\">";
+        echo "<input type=\"checkbox\" class=\"checkbox\" title=\"".htmlspecialchars($item->getDescription())."\" name=\"item[]\" value=\"".$item->getId()."\">";
+        echo $item->getName()."</label>";
+        
+        // Überprüfen, ob das aktuelle Element ausgewählt wurde
+        if (isset($_POST['item']) && in_array($item->getId(), $_POST['item'])) {
+            // Hinzufügen zur Session
+            $_SESSION['selected_categories'][] = $item->getId();
+        }
+        
+        if (++$counter % 1 === 0) {
+            echo "<br/>";
+        }
     }
+    
+    // Speichern des Session-Arrays
+    
     ?>
-  </select>
 </div>
 
     <div class="form-group">
@@ -180,6 +187,7 @@ if ($_SESSION['authenticated'] === true) {
 	
 
 </div>
+<hr>
 </body>
 <footer class = "foot">
   <div class="container">

@@ -4,6 +4,9 @@ use generatedclasses\CategoryQuery;
 use generatedclasses\ProductQuery;
 
 session_start();
+if (!isset($_SESSION['selectedCategories'])) {
+    $_SESSION['selectedCategories'] = array();
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -54,54 +57,58 @@ session_start();
         <!-- Inhalt der ersten Spalte -->
     <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
     <div class="form-group">
-  <label for="id">Category ID:</label>
-  <select id="cat_id" name="cat_id" accesskey="i" required>
-    <option value="">Select a category</option>
-    <?php
-    // Verbindung zur Datenbank herstellen
-    $con = Propel\Runtime\Propel::getConnection();
+        <label for="id">Category ID:</label>
+        <select name="category[]" multiple>
+            <?php
+            $category = CategoryQuery::create()->find();
+            foreach ($category as $item) {
+                echo "<option value=\"" . $item->getId() . "\" title=\"" . htmlspecialchars($item->getDescription()) . "\">" . $item->getName() . "</option>";
+            }
+            ?>
+        </select>
+        <br/>
+        <button type="button" class="add" onclick="addCategories()">Add</button>
+    </div>
+    <div class="form-group">
+        <label for="pro_id">Product ID:</label>
+        <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
+    </div>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" accesskey="n" maxlength="100" required>
+    </div>
+    <div class="form-group">
+        <label for="price">Preis:</label>
+        <input type="number" step=".01" id="price" name="price" accesskey="r" required> Euro
+    </div>
+    <div class="form-group">
+        <label for="width">Breite:</label>
+        <input type="number" step=".01" id="width" name="width" accesskey="b" required> cm
+    </div>
+    <div class="form-group">
+        <label for="height">Höhe:</label>
+        <input type="number" step=".01" id="height" name="height" accesskey="h" required> cm
+    </div>
+    <div class="form-group">
+        <label for="description">Beschreibung:</label>
+        <textarea id="description" name="description" accesskey="d" maxlength="255" required></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Absenden" accesskey="s">
+    </div>
 
-    // Datenbankabfrage durchführen
-    $query = 'SELECT id, name FROM category';
-    $stmt = $con->prepare($query);
-    $stmt->execute();
+    <script>
+        function addCategories() {
+            var selectedCategories = Array.from(document.querySelectorAll('select[name="category[]"] option:checked')).map(function(option) {
+                return option.value;
+            });
 
-    // Ergebnisse in das Formular einfügen
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $categoryId = $row['id'];
-        $categoryName = $row['name'];
-        echo "<option value='$categoryId'> $categoryId - $categoryName</option>";
-    }
-    ?>
-  </select>
-</div>
-    <div class="form-group">
-      <label for="id">Product ID:</label>
-      <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
-    </div>
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" accesskey="n"  maxlength="100" required>
-    </div>
-    <div class="form-group">
-      <label for="price">Preis:</label>
-      <input type="number" step=".01" id="price" name="price" accesskey="r" required> Euro
-    </div>
-    <div class="form-group">
-      <label for="width">Breite:</label>
-      <input type="number" step=".01" id="width" name="width" accesskey="b" required> cm
-    </div>
-    <div class="form-group">
-      <label for="height">Höhe:</label>
-      <input type="number" step=".01" id="height" name="height" accesskey="h" required> cm
-    </div>
-    <div class="form-group">
-      <label for="description">Beschreibung:</label>
-      <textarea id="description" name="description" accesskey="d" maxlength="255" required></textarea>
-    </div>
-    <div class="form-group">
-      <input type="submit" value="Absenden" accesskey="s">
-    </div>
+            // Speichern der ausgewählten Kategorien im Array oder führen Sie andere gewünschte Aktionen aus
+            console.log(selectedCategories);
+        }
+    </script>
+</form>
+
     
     <h3> Alte Daten: </h3>
     
@@ -154,6 +161,7 @@ session_start();
     <?php 
     }
     ?>
+    <hr>
 </body>
 <footer class = "foot">
   <div class="container">

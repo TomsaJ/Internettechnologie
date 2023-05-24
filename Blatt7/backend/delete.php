@@ -9,7 +9,7 @@ use generatedclasses\ProductQuery;
 $articleId = intval($_GET['cid']);
 $artId = intval($_GET['id']);
 
-if ($articleId === 1) {
+if ($articleId == 1) {
     $del = CategoryQuery::create()->findById($artId);
     
     if ($del !== null) {
