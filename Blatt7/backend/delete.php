@@ -51,6 +51,6 @@ if ($articleId == 1) {
     }
 }
 
-header("Location: ../frontend/confirmationpage.php");
+header("Location: ../frontend/product.php");
 exit();
 ?>

@@ -158,7 +158,7 @@ session_start();
   }elseif ($articleId==8)
   {
       
-      $del = ProductQuery::create()->findOneById($artId);
+      $del = ProductQuery::create()->findPK($artId);
       // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
       echo "Product-ID: " . $del->getId() . "<br>";
       echo "Product-Name: " . $del->getName() . "<br>";

@@ -181,6 +181,20 @@ use generatedclasses\CategoryQuery;
 
 </div>
 <hr>
+<?php if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+    
+    if ($articleId==1)
+    {
+    echo '<meta http-equiv="refresh" content="3; ../frontend/product.php">';
+    }
+    elseif($articleId==2)
+    {
+        echo '<meta http-equiv="refresh" content="3; ../frontend/catalog.php">';
+    }}
+?>
+<hr>
 </body>
 <footer class = "foot">
   <div class="container">
