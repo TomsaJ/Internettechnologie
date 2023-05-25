@@ -20,10 +20,9 @@ if (!isset($_SESSION['selectedCategories'])) {
   <ul>
     <li><a href="../index.php">Startseite</a></li>
     <li><a href="catalog.php">Categories</a>
-      <menu>
+       <!--  <menu>
         <li><a href="product.php">Product </a></li>
-        <li><a href="productdetails.php"> Product Details</a></li>
-      </menu>
+      </menu>-->
       </li>
     <li><a href="contact.php">Contact us</a></li>
     <?php 
@@ -31,7 +30,7 @@ if (!isset($_SESSION['selectedCategories'])) {
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="logout.php">Logout</a></li>';
+        echo '<li><a href="../backend/logout.php">Logout</a></li>';
     }
     else 
     {
@@ -55,24 +54,7 @@ if (!isset($_SESSION['selectedCategories'])) {
         
     ?>
         <!-- Inhalt der ersten Spalte -->
-    <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
-    <div class="form-group">
-        <label for="id">Category ID:</label>
-        <select name="category[]" multiple>
-            <?php
-            $category = CategoryQuery::create()->find();
-            foreach ($category as $item) {
-                echo "<option value=\"" . $item->getId() . "\" title=\"" . htmlspecialchars($item->getDescription()) . "\">" . $item->getName() . "</option>";
-            }
-            ?>
-        </select>
-        <br/>
-        <button type="button" class="add" onclick="addCategories()">Add</button>
-    </div>
-    <div class="form-group">
-        <label for="pro_id">Product ID:</label>
-        <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
-    </div>
+    <form action="../backend/update.php?cid=2&id=<?php echo $artId; ?>"  method="POST" name="userForm" class="form">
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" accesskey="n" maxlength="100" required>
@@ -97,17 +79,6 @@ if (!isset($_SESSION['selectedCategories'])) {
         <input type="submit" value="Absenden" accesskey="s">
     </div>
 
-    <script>
-        function addCategories() {
-            var selectedCategories = Array.from(document.querySelectorAll('select[name="category[]"] option:checked')).map(function(option) {
-                return option.value;
-            });
-
-            // Speichern der ausgewählten Kategorien im Array oder führen Sie andere gewünschte Aktionen aus
-            console.log(selectedCategories);
-        }
-    </script>
-</form>
 
     
     <h3> Alte Daten: </h3>
@@ -131,11 +102,11 @@ if (!isset($_SESSION['selectedCategories'])) {
     if ($articleId==2)
     {
     ?>
-    <form action="confirmationpage.php?cid=4&oid=<?php echo $artId; ?>" method="POST" name="userForm" class="form">
-    <div class="form-group">
+    <form action="../backend/update.php?cid=1&id=<?php echo $artId; ?>" method="POST" name="userForm" class="form">
+    <!-- <div class="form-group">
       <label for="id">ID:</label>
-      <input type="text" id="id" name="id" accesskey="i" required>
-    </div>
+      <input type="text"  id="id" name="id" accesskey="i" required>
+    </div> -->
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" accesskey="n" required>
@@ -150,10 +121,11 @@ if (!isset($_SESSION['selectedCategories'])) {
 	<h3> Alte Daten: </h3>
 	
         <?php 
-        $update= CategoryQuery::create()->findOneById($artId);
+        $update= CategoryQuery::create()->findPK($artId);
         // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
         echo "Kategorie-ID: " . $update->getId() . "<br>";
         echo "Kategorie-Name: " . $update->getName() . "<br>";
+        echo "Katergorie-Beschreibung: ". $update->getDescription();
         // Weitere Eigenschaften oder Methoden entsprechend der Kategorieklasse verwenden
         
         ?>
@@ -161,7 +133,20 @@ if (!isset($_SESSION['selectedCategories'])) {
     <?php 
     }
     ?>
-    <hr>
+    <?php if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+    
+    if ($articleId==1)
+    {
+    echo '<meta http-equiv="refresh" content="3; ../frontend/product.php">';
+    }
+    elseif($articleId==2)
+    {
+        echo '<meta http-equiv="refresh" content="3; ../frontend/catalog.php">';
+    }}
+?>
+      <hr>
 </body>
 <footer class = "foot">
   <div class="container">

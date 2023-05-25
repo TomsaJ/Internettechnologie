@@ -16,10 +16,10 @@ if (isset($_GET['message'])) {
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="frontend/catalog.php">Categories</a>
-      <menu>
+      <!--  <menu>
         <li><a href="frontend/product.php">Product </a></li>
         <li><a href="frontend/productdetails.php"> Product Details</a></li>
-      </menu>
+      </menu>-->
       </li>
     <li><a href="frontend/contact.php">Contact us</a></li>
     <?php 
@@ -44,13 +44,19 @@ if (isset($_GET['message'])) {
   <?php 
   include '../backend/loginandlogout.php';
   if (isLoggedIn()) {
-      echo "Die Sitzung ist aktiv.";
+      echo '<h4 style="color:green"> Die Sitzung ist aktiv </h4>';
   } else{
-      echo "Die Sitzung ist nicht aktiv.";
+      echo '<h4 style="color:red"> Die Sitzung ist NICHT aktiv </h4>';
   }
   
-  
   ?>
+  <form action="http://eclipse/phpmyadmin/index.php?route=/database/structure&db=catalog" name="userForm" class="form">
+  <h4>Ab zur Datenbank</h4>
+  <div class="form-group">
+      <input type="submit" value="Und los" accesskey="s">
+    </div>
+  </form>
+  
   <div id="message"><?php echo $message; ?></div>
   <hr>
 </body>

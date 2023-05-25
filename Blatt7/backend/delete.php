@@ -10,7 +10,7 @@ $articleId = intval($_GET['cid']);
 $artId = intval($_GET['id']);
 
 if ($articleId == 1) {
-    $del = CategoryQuery::create()->findById($artId);
+    $del = CategoryQuery::create()->findPK($artId);
     
     if ($del !== null) {
         try {
@@ -26,11 +26,11 @@ if ($articleId == 1) {
         }
     } else {
         // Fehlermeldung anzeigen, wenn die Kategorie nicht gefunden wurde
-        $message = "Nicht gelöscht";
+        $message = "Nicht gelöscht. Id nicht gefunden";
         $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
     }
 } elseif ($articleId === 2) {
-    $del = ProductQuery::create()->findById($artId);
+    $del = ProductQuery::create()->findPK($artId);
     
     if ($del !== null) {
         try {
@@ -45,12 +45,12 @@ if ($articleId == 1) {
             $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
         }
     } else {
-        // Fehlermeldung anzeigen, wenn das Produkt nicht gefunden wurde
-        $message = "Nicht gelöscht";
+        // Fehlermeldung anzeigen, wenn die Kategorie nicht gefunden wurde
+        $message = "Nicht gelöscht. Id nicht gefunden";
         $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
     }
 }
 
-header("Location: {$_SERVER['HTTP_REFERER']}");
+header("Location: ../frontend/confirmationpage.php");
 exit();
 ?>

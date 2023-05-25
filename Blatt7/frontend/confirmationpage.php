@@ -18,10 +18,9 @@ session_start();
   <ul>
     <li><a href="../index.php">Startseite</a></li>
     <li><a href="catalog.php">Categories</a>
-      <menu>
+       <!--  <menu>
         <li><a href="product.php">Product </a></li>
-        <li><a href="productdetails.php"> Product Details</a></li>
-      </menu>
+      </menu>-->
       </li>
     <li><a href="contact.php">Contact us</a></li>
     <?php 
@@ -29,7 +28,7 @@ session_start();
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="backend/logout.php">Logout</a></li>';
+        echo '<li><a href="../backend/logout.php">Logout</a></li>';
     }
     else 
     {
@@ -144,16 +143,16 @@ session_start();
     if ($articleId==7)
   {
       
-      $del = CategoryQuery::create()->findOneById($artId);
+      $del = CategoryQuery::create()->findPK($artId);
           // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
           echo "Kategorie-ID: " . $del->getId() . "<br>";
           echo "Kategorie-Name: " . $del->getName() . "<br>";
           // Weitere Eigenschaften oder Methoden entsprechend der Kategorieklasse verwenden
       
       ?>
-      <form action="../backend/delete.php?cid=1?id=<?php echo $artId?>" method="POST">
+      <form action="../backend/delete.php?cid=1&id=<?php echo $del->getId();?>" method="POST">
       <input type="submit" value="Weiter">
-    </form>
+    	</form>
 
       <?php 
   }elseif ($articleId==8)
@@ -170,7 +169,7 @@ session_start();
       // Weitere Eigenschaften oder Methoden entsprechend der Kategorieklasse verwenden
       
       ?>
-      <form action="../backend/delete.php?cid=2?id=<?php echo $artId?>" method="POST">
+      <form action="../backend/delete.php?cid=2&id=<?php echo $del->getId();?>" method="POST">
       <input type="submit" value="Weiter">
     </form>
 

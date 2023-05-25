@@ -16,10 +16,9 @@ session_start();
   <ul>
     <li><a href="../index.php">Startseite</a></li>
     <li><a href="catalog.php">Categories</a>
-      <menu>
+       <!--  <menu>
         <li><a href="product.php">Product </a></li>
-        <li><a href="productdetails.php"> Product Details</a></li>
-      </menu>
+      </menu>-->
       </li>
     <li><a href="contact.php">Contact us</a></li>
     <?php 
@@ -27,7 +26,7 @@ session_start();
 // Überprüfen Sie, ob der Benutzer authentifiziert ist
     if (isLoggedIn()) {
     // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-        echo '<li><a href="logout.php">Logout</a></li>';
+        echo '<li><a href="../backend/logout.php">Logout</a></li>';
     }
     else 
     {
