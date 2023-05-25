@@ -18,9 +18,9 @@ session_start();
   <ul>
     <li><a href="../index.php">Startseite</a></li>
     <li><a href="catalog.php">Categories</a>
-       <!--  <menu>
+       <menu>
         <li><a href="product.php">Product </a></li>
-      </menu>-->
+      </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
     <?php 
@@ -162,9 +162,9 @@ session_start();
       // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
       echo "Product-ID: " . $del->getId() . "<br>";
       echo "Product-Name: " . $del->getName() . "<br>";
-      echo "Price: ".$del->getPrice()."<br>";
-      echo "Width: ".$del->getWidth()."<br>";
-      echo "Heigth: ".$del->getHeigth()."<br>";
+      echo "Price: ".$del->getPrice()."€<br>";
+      echo "Width: ".$del->getWidth()."cm<br>";
+      echo "Heigth: ".$del->getHeigth()."cm<br>";
       echo "Description: ".$del->getDescription()."<br>";
       // Weitere Eigenschaften oder Methoden entsprechend der Kategorieklasse verwenden
       

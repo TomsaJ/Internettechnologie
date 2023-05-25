@@ -11,9 +11,9 @@
   <ul>
     <li><a href="../index.php">Startseite</a></li>
     <li><a href="catalog.php">Categories</a>
-       <!--  <menu>
+       <menu>
         <li><a href="product.php">Product </a></li>
-      </menu>-->
+      </menu>
       </li>
     <li><a href="contact.php">Contact us</a></li>
     <?php 

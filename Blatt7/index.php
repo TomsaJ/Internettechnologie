@@ -16,10 +16,10 @@ if (isset($_GET['message'])) {
   <ul>
     <li><a href="index.php">Startseite</a></li>
     <li><a href="frontend/catalog.php">Categories</a>
-      <!--  <menu>
+      <menu>
         <li><a href="frontend/product.php">Product </a></li>
         <li><a href="frontend/productdetails.php"> Product Details</a></li>
-      </menu>-->
+      </menu>
       </li>
     <li><a href="frontend/contact.php">Contact us</a></li>
     <?php 

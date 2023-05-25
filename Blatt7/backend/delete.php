@@ -5,6 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 use generatedclasses\CategoryQuery;
 use generatedclasses\ProductQuery;
+use generatedclasses\ProductCatalogyQuery;
 
 $articleId = intval($_GET['cid']);
 $artId = intval($_GET['id']);
@@ -31,10 +32,12 @@ if ($articleId == 1) {
     }
 } elseif ($articleId === 2) {
     $del = ProductQuery::create()->findPK($artId);
+    $delk = ProductCatalogyQuery::create()->findPks($artId);
     
     if ($del !== null) {
         try {
             $del->delete();
+            $delk->delete();
             
             // Erfolgreiche Nachricht anzeigen
             $message = "Gelöscht";
