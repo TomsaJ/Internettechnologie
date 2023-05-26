@@ -81,7 +81,7 @@ use generatedclasses\CategoryQuery;
     // Speichern des Session-Arrays
     
     ?>
-</div>
+    </div>
 
     <div class="form-group">
       <label for="id">Product ID:</label>
@@ -124,11 +124,11 @@ use generatedclasses\CategoryQuery;
 	// Überprüfen Sie, ob der Benutzer authentifiziert ist
 	
 	$articleId = $_GET['id'];
-	
+	if ($articleId !== null){
 	$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
 	
 	    
-	
+	if($PCId){
 	
 	echo "<table style='width: 100%; max-width: 100%;'>";
 	echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th>";
@@ -176,6 +176,53 @@ use generatedclasses\CategoryQuery;
 	    }
 	}
 	echo '</table>';
+	}else{
+	    echo "<table style='width: 100%; max-width: 100%;'>";
+	    echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th>";
+	    if (isLoggedIn()) {
+	        echo "<th>Update</th><th>Delete</th></tr>";
+	        
+	        
+	            $product = ProductQuery::create()->find();
+	            foreach ($product as $product) {
+	            if ($product !== null) {
+	                echo "<tr>";
+	                echo "<td>".$product->getId()."</td>";
+	                echo "<td>".$product->getName()."</td>";
+	                echo "<td>".$product->getPrice()."€</td>";
+	                echo "<td>".$product->getWidth()."cm</td>";
+	                echo "<td>".$product->getHeigth()."cm</td>";
+	                echo "<td>".$product->getDescription()."</td>";
+	                echo '<td><a href="../frontend/update.php?cid=1&id=' . $product->getId() . '">Update</a></td>';
+	                echo '<td><a href="../frontend/confirmationpage.php?cid=8&id=' . $product->getId() . '">Delete</a></td>';
+	                echo "</tr>";
+	            }
+	            }
+	    }else{
+	        
+	        echo "</tr>";
+	    
+	        $prod = ProductQuery::create()->find();
+	        foreach ($prod as $product) {
+	        if ($product !== null) {
+	            echo "<tr>";
+	            echo "<td>".$product->getId()."</td>";
+	            echo "<td>".$product->getName()."</td>";
+	            echo "<td>".$product->getPrice()."€</td>";
+	            echo "<td>".$product->getWidth()."cm</td>";
+	            echo "<td>".$product->getHeigth()."cm</td>";
+	            echo "<td>".$product->getDescription()."</td>";
+	            echo "</tr>";
+	        }
+	        
+	       
+	} 
+	} echo '</table>';
+	}
+	}else{
+	    echo "Id nicht vorhanden";
+	}
+	
 ?>
 
 	

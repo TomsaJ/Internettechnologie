@@ -12,6 +12,8 @@ $artId = intval($_GET['id']);
 
 if ($articleId == 1) {
     $del = CategoryQuery::create()->findPK($artId);
+    $delk = ProductCatalogyQuery::create()->findPks($artId);
+    
     
     if ($del !== null) {
         try {

@@ -15,5 +15,13 @@ use generatedclasses\Base\User as BaseUser;
  */
 class User extends BaseUser
 {
-
+    function checkgenerateHash($plainText, $salt)
+    {
+        if ($salt != null)
+        {
+            return  $salt . sha1($salt . $plainText);
+        } else {
+            
+        }
+    }
 }

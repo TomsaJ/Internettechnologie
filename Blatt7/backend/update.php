@@ -1,12 +1,13 @@
 <?php
-use generatedclasses\CategoryQuery;
-use generatedclasses\Category;
-use generatedclasses\ProductQuery;
+
 
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
-
+use generatedclasses\CategoryQuery;
+use generatedclasses\Category;
+use generatedclasses\ProductQuery;
+use generatedclasses\ProductCatalogy;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $articleId = $_GET['cid'];
     $artId = $_GET['id'];
@@ -49,6 +50,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $height = $_POST['height'];
         
         $product = ProductQuery::create()->findById($artId);
+        
+        if (isset($_POST['item'])) {
+            $selectedCategories = $_POST['item'];
+            
+            try {
+                foreach ($selectedCategories as $item) {
+                    $category = new ProductCatalogy(); // Korrigierter Klassenname
+                    $category->setCategoryId($item);
+                    $category->setProductId($artId);
+                    // Die Kategorie in die Datenbank einfügen
+                    $category->save();
+                }
+            } catch (Exception $e) {
+                // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
+                $message = $e;
+                $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+                header("Location: {$_SERVER['HTTP_REFERER']}");
+                exit();
+            }
+            
+            // Löschen des Session-Arrays
+            unset($_SESSION['selected_categories']);
+        }else
+        {
+            $_SESSION['message'] = "Ungültige Anfrage.";
+            header("Location: {$_SERVER['HTTP_REFERER']}");
+            exit();
+        }
         
         
         if ($product !== null) {
