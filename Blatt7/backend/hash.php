@@ -11,6 +11,14 @@ function generateHash($plainText, $salt = null)
     return  $salt . sha1($salt . $plainText);
 }
 
-
+function checkgenerateHash($plainText, $salt)
+{
+    if ($salt != null)
+    {
+        return  $salt . sha1($salt . $plainText);
+    } else {
+        
+    }
+}
 
 ?>

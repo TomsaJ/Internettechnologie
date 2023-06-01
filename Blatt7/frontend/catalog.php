@@ -1,11 +1,6 @@
 <?php
 session_start();
-/*
-// Überprüfen Sie, ob der Benutzer authentifiziert ist
-if ($_SESSION['authenticated'] === true) {
-    // Der Benutzer ist authentifiziert, zeige den Button zum Anlegen neuer Objekte an
-    echo '<a href="neues_objekt_erstellen.php" class="btn btn-primary">Neues Objekt anlegen</a>';
-}*/
+ 
 ?>
 <!DOCTYPE html>
 <html lang="de">

@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($articleId == 1 && $artId !== null) {
         $category = CategoryQuery::create()->findPK($artId);
-        
+        $name = $_POST['name'];
+        $description = $_POST['description'];
         
         if ($category !== null) {
             //$category->setId($id);
@@ -44,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     if ($articleId == 2 && $artId !== null) {
-        
+        $name = $_POST['name'];
+        $description = $_POST['description'];
         $price = $_POST['price'];
         $width = $_POST['width'];
         $height = $_POST['height'];

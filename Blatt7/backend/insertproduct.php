@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } catch (Exception $e) {
                 // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
-                $message = "Category konnte nicht erstellt werden";
+                $message = "Product konnte nicht erstellt werden. ID vorhanden";
                 $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
                 header("Location: {$_SERVER['HTTP_REFERER']}");
                 exit();

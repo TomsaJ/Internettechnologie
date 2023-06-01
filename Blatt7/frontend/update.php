@@ -105,7 +105,7 @@ if (!isset($_SESSION['selectedCategories'])) {
     </div>
     <div class="form-group">
         <label for="description">Beschreibung:</label>
-        <textarea id="description" value ="<?php echo $update->getDescription(); ?>"  name="description" accesskey="d" maxlength="255" required></textarea>
+        <textarea id="description"  name="description" accesskey="d" maxlength="255" required><?php echo $update->getDescription(); ?></textarea>
     </div>
     <div class="form-group">
         <input type="submit" value="Absenden" accesskey="s">
