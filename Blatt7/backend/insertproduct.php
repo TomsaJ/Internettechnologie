@@ -6,20 +6,27 @@ require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 
 use generatedclasses\Product;
 use generatedclasses\ProductCatalogy;
+use generatedclasses\ProductQuery;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Daten aus dem Formular abrufen
     //$cat_id = $_POST['cat_id'];
-    $pro_id = $_POST['pro_id'];
     $name = $_POST['name'];
     $price = $_POST['price'];
     $width = $_POST['width'];
     $height = $_POST['height'];
     $description = $_POST['description'];
     
+    $articles = ProductQuery::create()->find();
+    $id = 0;
+    foreach ($articles as $article) {
+        
+        $id = $id + 1;
+    }
+    
     // Erstellen Sie ein neues Objekt der Tabelle "Product"
     $product = new Product();
-    $product->setId($pro_id);
+    $product->setId($id);
     $product->setName($name);
     $product->setPrice($price);
     $product->setWidth($width);
@@ -34,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 foreach ($selectedCategories as $item) {
                     $category = new ProductCatalogy(); // Korrigierter Klassenname
                     $category->setCategoryId($item);
-                    $category->setProductId($pro_id);
+                    $category->setProductId($id);
                 // Die Kategorie in die Datenbank einfügen
                     $category->save();
                 }

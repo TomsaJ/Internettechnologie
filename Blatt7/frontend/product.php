@@ -5,6 +5,7 @@ require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 use generatedclasses\ProductQuery;
 use generatedclasses\ProductCatalogyQuery;
 use generatedclasses\CategoryQuery;
+use Symfony\Component\Validator\Constraints\Length;
 
 ?>
 
@@ -53,12 +54,12 @@ use generatedclasses\CategoryQuery;
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
 <hr>
+<h2>Product hinzufügen</h2>
   <form action="confirmationpage.php?cid=1" method="POST" name="userForm" class="form">
     <div class="form-group">
-  <label for="id">Category ID:</label>
+  <label for="id">Category:</label>
   <br />
     <?php
-    
     $counter = 0;
     $category = CategoryQuery::create()->find();
     
@@ -83,10 +84,6 @@ use generatedclasses\CategoryQuery;
     ?>
     </div>
 
-    <div class="form-group">
-      <label for="id">Product ID:</label>
-      <input type="number" id="pro_id" name="pro_id" accesskey="i" required>
-    </div>
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" accesskey="n"  maxlength="100" required>
@@ -126,9 +123,10 @@ use generatedclasses\CategoryQuery;
 	$articleId = $_GET['id'];
 	if ($articleId !== null){
 	$PCId = ProductCatalogyQuery::create()->findByCategoryId($articleId);
-	
+	$find = ProductQuery::create()->findPK($articleId);
+	if ($find){
 	    
-	if($PCId){
+	if($PCId !== null){
 	
 	echo "<table style='width: 100%; max-width: 100%;'>";
 	echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th>";
@@ -143,11 +141,15 @@ use generatedclasses\CategoryQuery;
 	        if ($product !== null) {
 	            echo "<tr>";
 	            echo "<td>".$product->getId()."</td>";
-	            echo "<td>".$product->getName()."</td>";
+	            echo '<td><a href=../frontend/productdetails.php?id=' . $product->getId() . ">" .$product->getName()."</td>";
 	            echo "<td>".$product->getPrice()."€</td>";
 	            echo "<td>".$product->getWidth()."cm</td>";
 	            echo "<td>".$product->getHeigth()."cm</td>";
-	            echo "<td>".$product->getDescription()."</td>";
+	            if(strlen($product->getDescription()) > 60) {
+	            echo "<td>".substr($product->getDescription(),0,60)." ... </td>";
+	            }else {
+	                echo "<td>".$product->getDescription()."</td>";
+	            }
 	            echo '<td><a href="../frontend/update.php?cid=1&id=' . $product->getId() . '">Update</a></td>';
 	            echo '<td><a href="../frontend/confirmationpage.php?cid=8&id=' . $product->getId() . '">Delete</a></td>';
 	            echo '</tr>';
@@ -176,7 +178,7 @@ use generatedclasses\CategoryQuery;
 	    }
 	}
 	echo '</table>';
-	}else{
+	    /*
 	    echo "<table style='width: 100%; max-width: 100%;'>";
 	    echo "<tr><th>Id</th><th>Name</th><th>Preis</th><th>Breite</th><th>Höhe</th><th>Beschreibung</th>";
 	    if (isLoggedIn()) {
@@ -218,11 +220,11 @@ use generatedclasses\CategoryQuery;
 	       
 	} 
 	} echo '</table>';
-	}
+	}*/}
 	}else{
-	    echo "Id nicht vorhanden";
+	    echo "Id nicht vorhanden";}
+	} else {echo "Id nicht vorhanden";
 	}
-	
 ?>
 
 	

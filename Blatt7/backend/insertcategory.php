@@ -5,13 +5,19 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../propel_folder/generated-conf/config.php';
 
 use generatedclasses\Category;
+use generatedclasses\CategoryQuery;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Daten aus dem Formular abrufen
-    $id = $_POST['id'];
     $name = $_POST['name'];
     $description = $_POST['description'];
     
+    $articles = CategoryQuery::create()->find();
+    $id = 0;
+    foreach ($articles as $article) {
+        
+        $id = $id + 1;
+    }
     // Ein neues Category-Objekt erstellen
     $category = new Category();
     $category->setId($id);
@@ -34,6 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: {$_SERVER['HTTP_REFERER']}");
         exit();
     }
+}
+else {
+    $message = "Fehler";
+    $_SESSION['message'] = $message; // Fehlermeldung in einer Session-Variablen speichern
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+    exit();
 }
 ?>
 

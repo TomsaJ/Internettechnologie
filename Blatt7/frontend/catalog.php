@@ -40,6 +40,8 @@ session_start();
 <body>
   <!-- Formular für die Tabelle "user" -->
   <h1>Category</h1>
+  <hr>
+  <h2>Catergory hinzufügen</h2>
   <?php if (isLoggedIn()) {
 	    
 	    
@@ -47,12 +49,8 @@ session_start();
 	    ?>
   <!-- Formular für die Tabelle "user" -->
   <div class="form-container">
-<hr>
   <form action="confirmationpage.php?cid=2" method="POST" name="userForm" class="form">
-    <div class="form-group">
-      <label for="id">ID:</label>
-      <input type="text" id="id" name="id" accesskey="i" required>
-    </div>
+    
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" accesskey="n" required>

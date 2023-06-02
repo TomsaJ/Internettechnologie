@@ -8,6 +8,7 @@ use generatedclasses\CategoryQuery;
 use generatedclasses\Category;
 use generatedclasses\ProductQuery;
 use generatedclasses\ProductCatalogy;
+use generatedclasses\ProductCatalogyQuery;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $articleId = $_GET['cid'];
     $artId = $_GET['id'];
@@ -51,10 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $width = $_POST['width'];
         $height = $_POST['height'];
         
-        $product = ProductQuery::create()->findById($artId);
+        $product = ProductQuery::create()->findOneById($artId);
+        //$delk = ProductCatalogyQuery::create()->findByProductId($artId);
+        //$delk->delete();
         
         if (isset($_POST['item'])) {
             $selectedCategories = $_POST['item'];
+            unset($_SESSION['selected_categories']);
             
             try {
                 foreach ($selectedCategories as $item) {
@@ -63,6 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $category->setProductId($artId);
                     // Die Kategorie in die Datenbank einfügen
                     $category->save();
+                    $_SESSION['message'] = "Die Kategorie wurde erfolgreich aktualisiert.";
+                    header("Location: {$_SERVER['HTTP_REFERER']}");
                 }
             } catch (Exception $e) {
                 // Fehlermeldung anzeigen, wenn das Einfügen fehlgeschlagen ist
@@ -73,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             
             // Löschen des Session-Arrays
-            unset($_SESSION['selected_categories']);
+            
         }else
         {
             $_SESSION['message'] = "Ungültige Anfrage.";
@@ -94,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $product->save();
                 
                 // Erfolgreiche Nachricht anzeigen
-                $_SESSION['message'] = "Die Kategorie wurde erfolgreich aktualisiert.";
+                $_SESSION['message'] = "Die Product wurde erfolgreich aktualisiert.";
                 header("Location: {$_SERVER['HTTP_REFERER']}");
                 exit();
             } catch (Exception $e) {

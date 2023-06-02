@@ -53,14 +53,16 @@ if (!isset($_SESSION['selectedCategories'])) {
     $artId = $_GET['id'];
     
     
-    if ($articleId==1)
-    {
+        if ($articleId==1)
+        {
+            $update = ProductQuery::create()->findOneById($artId);
+            if($update){
         
     ?>
         <!-- Inhalt der ersten Spalte -->
     <form action="../backend/update.php?cid=2&id=<?php echo $artId; ?>"  method="POST" name="userForm" class="form">
     <div class="form-group">
-  <label for="id">Category ID:</label>
+  <label for="id">Category:</label>
   <br />
     <?php
     
@@ -97,11 +99,13 @@ if (!isset($_SESSION['selectedCategories'])) {
     </div>
     <div class="form-group">
         <label for="width">Breite:</label>
-        <input type="number"  value="<?php echo $update->getwidth(); ?> "step=".01" id="width" name="width" accesskey="b" required> cm
+        <input type="number" value="<?php echo number_format($update->getwidth(), 4, '.', ''); ?>" step="0.0001" min="0" id="width" name="width" accesskey="b" required> cm
+
     </div>
     <div class="form-group">
         <label for="height">Höhe:</label>
-        <input type="number"  value="<?php echo $update->getHeigth(); ?>" step=".01" id="height" name="height" accesskey="h" required> cm
+        <input type="number" value="<?php echo number_format($update->getHeigth(), 4, '.', ''); ?>" step="0.0001" min="0" id="height" name="height" accesskey="h" required> cm
+
     </div>
     <div class="form-group">
         <label for="description">Beschreibung:</label>
@@ -129,10 +133,14 @@ if (!isset($_SESSION['selectedCategories'])) {
         ?>
         </form>
     <?php 
-    }
-    
+    }else{
+        echo "Nicht Vorhanden";
+    }}
     if ($articleId==2)
     {
+    
+    
+        $update= CategoryQuery::create()->findPK($artId);
     ?>
     <form action="../backend/update.php?cid=1&id=<?php echo $artId; ?>" method="POST" name="userForm" class="form">
     <!-- <div class="form-group">
@@ -141,11 +149,11 @@ if (!isset($_SESSION['selectedCategories'])) {
     </div> -->
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" accesskey="n" required>
+      <input type="text" value="<?php echo $update->getName(); ?>" id="name" name="name" accesskey="n" required>
     </div>
     <div class="form-group">
       <label for="description">Beschreibung:</label>
-      <textarea id="description" name="description" accesskey="d"  maxlength="255" required></textarea>
+      <textarea id="description"  name="description" accesskey="d"  maxlength="255" required><?php echo $update->getDescription(); ?></textarea>
     </div>
     <div class="form-group">
       <input type="submit" value="Absenden" accesskey="s">
@@ -153,7 +161,7 @@ if (!isset($_SESSION['selectedCategories'])) {
 	<h3> Alte Daten: </h3>
 	
         <?php 
-        $update= CategoryQuery::create()->findPK($artId);
+        
         // Beispiel für den Zugriff auf eine Eigenschaft der Kategorie
         echo "Kategorie-ID: " . $update->getId() . "<br>";
         echo "Kategorie-Name: " . $update->getName() . "<br>";
@@ -165,7 +173,8 @@ if (!isset($_SESSION['selectedCategories'])) {
     <?php 
     }
     ?>
-    <?php if (isset($_SESSION['message'])) {
+    <?php 
+    if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];
     unset($_SESSION['message']);
     
