@@ -1,6 +1,7 @@
 {
 	"require" : {
-		"propel/propel" : "~2.0@beta"
+		"propel/propel" : "~2.0@beta",
+		"smarty/smarty": "^4.3"
 	},"autoload": {
     "classmap": ["propel_folder/generatedclasses/"]
 }
